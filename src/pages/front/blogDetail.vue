@@ -5,7 +5,7 @@
       <div id="blogDetail">
         <h1>{{ blog.title }}</h1>
         <span>
-          作者: {{ blog.author }} 发布于: {{ blog.ctime }} 浏览({{
+          作者:Silence.Y 发布于: {{ blog.ctime }} 浏览({{
           blog.views
           }})
         </span>
