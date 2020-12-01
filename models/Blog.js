@@ -10,7 +10,8 @@ const Blog = sequelize.define('Blog', {
     allowNull: false
   },
   content: {
-    type: DataTypes.STRING(10000),
+    // type: DataTypes.STRING(10000),
+    type: DataTypes.TEXT('long'),
     allowNull: false
   },
   views: {
