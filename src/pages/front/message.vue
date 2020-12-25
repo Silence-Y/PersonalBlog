@@ -75,6 +75,6 @@ h6 {
 }
 
 #comment p {
-  padding: 10px 20px 10px 20px;
+  padding: 20px 30px 20px 30px;
 }
 </style>

@@ -8,7 +8,7 @@
         <input type="text" placeholder="邮箱" v-model="comments.email" />
         <textarea placeholder="无意义的内容我可能不会回复你" v-model="comments.content"></textarea>
         <span></span>
-        <button @click="sendComment">发布评论</button>
+        <button @click="sendComment">发表评论</button>
       </div>
 
       <!-- 评论显示 -->
