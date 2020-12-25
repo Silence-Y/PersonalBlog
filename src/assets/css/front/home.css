@@ -1,0 +1,136 @@
+@font-face {
+  font-family: "Panda";
+  src: url("../../font/glyphicons-halflings-regular.woff2");
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  color: #212121;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+#blogList {
+  position: relative;
+  width: 100%;
+  margin: 20px 0px 0px 0px;
+}
+
+#blogList ul {
+  position: relative;
+  width: 100%;
+}
+
+#blogList>ul>li {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 300px;
+  list-style: none;
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
+  margin: 20px 0px 20px 0px;
+}
+
+
+
+#blogList>ul>li>h2 {
+  position: relative;
+  font-size: 30px;
+  text-align: center;
+  padding: 30px 20px 0px 20px;
+  cursor: pointer;
+}
+
+#blogList>ul>li>h2:hover {
+  color: #009688;
+}
+
+#blogList>ul>li>span {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 20px;
+  padding: 10px 0px 10px 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+/* 是第三部分 */
+#blogList>ul>li .items {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  width: 99%;
+  padding: 5px 5px 5px 5px;
+  box-sizing: content-box;
+}
+
+#blogList>ul>li .items h5 {
+  font-size: 14px;
+  color: #009688;
+}
+
+/* 文本内容 */
+/* #blogList>ul>li>div .text {
+  position: relative;
+  display: inline-block;
+  width: 98%;
+  height: 60px;
+  font-size: 18px;
+  margin-bottom: 1.5em;
+  padding: 20px 20px 20px 20px;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+} */
+#blogList>ul>li>p {
+  position: relative;
+  display: inline-block;
+  width: 93%;
+  font-size: 18px;
+  /* margin-bottom: 1.5em; */
+  line-height: 1.7em;
+  /* padding: 20px 30px 20px 30px; */
+  margin: 20px 30px 20px 30px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+
+#blogList>ul>li h4 {
+  position: relative;
+  font-size: 14px;
+  width: 110px;
+  margin: 40px auto;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid #009688;
+  padding-bottom: 10px;
+}
+
+#blogList>ul>li h4:hover {
+  color: #009688;
+}
+
+
+
+
+#blogList>ul>li>div>span {
+  padding: 0px 10px 0px 10px;
+}

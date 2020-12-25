@@ -40,7 +40,7 @@
             <el-button
               type="text"
               icon="el-icon-edit"
-              @click="handleEdit(scope.$index, scope.row.id, scope.row.ctime)"
+              @click="handleEdit(scope.$index,scope.row, scope.row.id, scope.row.ctime)"
             >编辑</el-button>
             <el-button
               type="text"
@@ -149,11 +149,14 @@ export default {
     },
 
     // 编辑操作
-    handleEdit(index, id, ctime) {
+    handleEdit(index, row, id, ctime) {
       this.$router.push({
         path: "editBlog",
-        query: { id: id, newCtime: ctime }
+        query: { id: id, newCtime: ctime, row: row }
       });
+      console.log(row);
+      // 数据回显
+      this.blog = Object.assign({}, this.blog, row);
     },
     // 删除操作
     handleDelete(id) {

@@ -1,46 +1,47 @@
 <template>
-  <div>
-    <div class="content">
-      <!-- 左侧内容 -->
-      <div class="content_left">
-        <!-- 每日一句 -->
-        <div id="everyDay">
-          <span class="everyDayTitle">每日一句</span>
-          <p>{{ everyDay }}</p>
-        </div>
-
-        <!-- 博客 -->
-        <div id="blogList">
-          <ul>
-            <li v-for="(item, index) of blogs" :key="index">
-              <router-link
-                :to="{
+  <div class="content">
+    <!-- 左侧内容 -->
+    <div class="content_left">
+      <!-- 博客 -->
+      <div id="blogList">
+        <ul>
+          <li v-for="(item, index) of blogs" :key="index">
+            <!-- 标题 -->
+            <router-link
+              :to="{
                   path: 'blogDetail',
                   query: { id: item.id, views: item.views }
                 }"
-                tag="span"
-              >{{ item.title }}</router-link>
-              <!-- <span>{{item.title}}</span> -->
+              tag="h2"
+            >{{ item.title }}</router-link>
 
-              <!-- 富文本显示-->
-              <div class="ql-container ql-snow">
-                <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
-              </div>
-              <!-- <p>{{ item.content }}</p> -->
+            <!-- 发布时间 -->
+            <div class="items">
+              <h5>发布于{{ item.ctime }} | {{ item.views }}人阅读</h5>
+            </div>
 
-              <div class="items">
-                <span>发布于{{ item.ctime }} | 浏览({{ item.views }})</span>
-              </div>
-            </li>
-          </ul>
-        </div>
+            <!-- 富文本显示  内容-->
+            <!-- <div class="ql-container ql-snow">
+              <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
+            </div>-->
+            <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
+
+            <!-- 显示更多 -->
+            <router-link
+              :to="{
+                  path: 'blogDetail',
+                  query: { id: item.id, views: item.views }
+                }"
+              tag="h4"
+              class="read-more"
+            >READ MORE</router-link>
+          </li>
+        </ul>
       </div>
-
-      <!-- 分页 -->
-
-      <!-- 右侧内容 -->
-      <Right></Right>
     </div>
+
+    <!-- 右侧内容 -->
+    <Right></Right>
   </div>
 </template>
 
@@ -49,25 +50,13 @@ import Right from "../../components/front/right";
 export default {
   data() {
     return {
-      // 所有每日一句页面
-      everyDay: "",
       blogs: []
     };
   },
   created() {
-    this.getEveryDay();
     this.getBlogs();
   },
   methods: {
-    // 获取每日一句
-    getEveryDay() {
-      this.$http.get("/api/everyDay/getLastEveryDay").then(res => {
-        // 获取最新的每日一句
-        // console.log(res.data.data);
-        this.everyDay = res.data.data.content;
-        // console.log(everyDay);
-      });
-    },
     // 获取博客
     getBlogs() {
       this.loading = true;
@@ -82,8 +71,7 @@ export default {
 };
 </script>
 
-<style>
-@import "../../assets/css/front/index.css";
-@import "../../assets/css/front/base.css";
+<style scoped>
+@import "../../assets/css/front/home.css";
 </style>
 

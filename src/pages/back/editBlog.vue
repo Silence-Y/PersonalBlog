@@ -17,12 +17,16 @@
         </el-form-item>-->
 
         <el-form-item>
-          <quill-editor
-            ref="myTextEditor"
+          <mavon-editor
+            class="md"
+            ref="md"
             v-model="blog.content"
             :options="editorOption"
-            class="quill-editor ql-editor"
-          ></quill-editor>
+            @change="change"
+            :ishljs="true"
+            @imgAdd="handleEditorImgAdd"
+            @imgDel="handleEditorImgDel"
+          ></mavon-editor>
           <!-- <span class="wordNumber">{{ TiLength }}/10000</span> -->
         </el-form-item>
       </el-form>
@@ -32,10 +36,9 @@
 </template>
 
 <script>
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-import { quillEditor } from "vue-quill-editor";
+import { mavonEditor } from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+
 import cheerio from "cheerio";
 import moment from "moment";
 
@@ -52,6 +55,8 @@ export default {
         tag: "",
         ctime: ""
       },
+      // 及时转的html
+      html: "",
       editorOption: {
         placeholder: "Hello World"
       },
@@ -59,27 +64,58 @@ export default {
     };
   },
   components: {
-    quillEditor
+    mavonEditor
+  },
+  created() {
+    this.getBlog();
   },
   methods: {
-    onEditorChange({ editor, html, text }) {
-      this.content = html;
+    getBlog() {
+      // 数据回显
+      // console.log(this.$route.query.row);
+      this.blog = Object.assign({}, this.blog, this.$route.query.row);
+    },
+    // onEditorChange({ editor, html, text }) {
+    //   this.content = html;
+    // },
+    handleEditorImgAdd(pos, $file) {
+      // 第一步，将图片上传到服务器
+      var formdata = new FormData();
+      //这里的'image'即对应的是后台需要接受的参数名，如果有有配置，则需要和后台的参数名对应
+      formdata.append("image", $file);
+      this.$http({
+        url: "server url", //图片上传接口路径
+        method: "post",
+        data: formdata,
+        headers: { "Content-Type": "multipart/form-data" }
+      }).then(url => {
+        // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+        // 图片回显到编辑器添加图片的位置
+        $vm.$img2Url(pos, url);
+        //或者使用以下方式回显
+        //this.$refs.md.$img2Url(pos, url);
+      });
+    },
+    change(value, render) {
+      this.html = render;
     },
     submit() {
       const id = this.$route.query.id;
       // const $ = cheerio.load(html);
       // console.log(id);
-      let html = document
-        .querySelector(".quill-editor")
-        .innerHTML.replace(/<[^>]+>/g, "");
-      // this.blog.content = html;
-      // console.log(html);
-      html = `<div class="ql-container ql-snow"><div class="ql-editor">${html}
-        </div></div>`;
+      // let html = document
+      //   .querySelector(".quill-editor")
+      //   .innerHTML.replace(/<[^>]+>/g, "");
+      // // this.blog.content = html;
+      // // console.log(html);
+      // html = `<div class="ql-container ql-snow"><div class="ql-editor">${html}
+      //   </div></div>`;
 
       // 将提交的内容显示正常
       // $("[content]").val(html);
-      console.log(html);
+      // console.log(this.html);
+      this.blog.content = this.html;
+      console.log(this.blog.content);
 
       // this.blog.content = this.blog.content.replace(/<[^>]+>/g, "");
 

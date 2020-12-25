@@ -1,19 +1,13 @@
-#comment {
+#blogComment {
   width: 100%;
-  background: white;
   margin: 20px 0px 0px 0px;
-  border-radius: 5px;
 }
-
-#comment p {
-  padding: 10px 0px 10px 20px;
-}
-
 
 .addComment {
   margin-top: 20px;
-  width: 98%;
+  width: 100%;
   background: white;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
 }
 
 .addComment input {
@@ -43,13 +37,9 @@
   background: gray;
 }
 
-#blogComment {
-  width: 100%;
-  margin: 20px 0px 0px 0px;
-}
-
+/* 评论显示 */
 #blogComment ul {
-  width: 98%;
+  width: 100%;
 }
 
 #blogComment ul li {

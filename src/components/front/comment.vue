@@ -11,6 +11,7 @@
         <button @click="sendComment">发布评论</button>
       </div>
 
+      <!-- 评论显示 -->
       <ul>
         <li v-for="(key, index) of commentsList" :key="index">
           <span>

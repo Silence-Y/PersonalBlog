@@ -3,21 +3,30 @@
     <!-- 左侧内容 -->
     <div class="content_left">
       <div id="blogDetail">
+        <!-- 标题 -->
         <h1>{{ blog.title }}</h1>
-        <span>
-          作者:Silence.Y 发布于: {{ blog.ctime }} 浏览({{
+        <!-- 作者 -->
+        <h5>
+          作者:Silence.Y 发布于: {{ blog.ctime }} {{
           blog.views
-          }})
-        </span>
+          }}人阅读
+        </h5>
+
         <!-- 富文本样式显示 -->
-        <div class="ql-container ql-snow">
+        <!-- <div class="ql-container ql-snow">
           <div id="blog_content" class="ql-editor" v-html="blog.content">{{ blog.content }}</div>
+        </div>-->
+        <!-- vue展示markdown内容 -->
+        <!-- <div id="blog_content" class="markdown-body" v-html="blog.content">{{ blog.content }}</div> -->
+        <div v-highlight class="mavonEditor">
+          <mavon-editor id="blog_content" v-html="blog.content">{{ blog.content }}</mavon-editor>
         </div>
-        <!-- <div id="blog_content">{{ blog.content }}</div> -->
+
+        <!-- <div id="blog_content" v-highlight v-html="blog.content">{{ blog.content }}</div> -->
       </div>
 
       <!-- 评论 -->
-      <Comment></Comment>
+      <!-- <Comment></Comment> -->
     </div>
 
     <!-- 右侧内容 -->
@@ -26,11 +35,8 @@
 </template>
 
 <script>
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-import { quillEditor } from "vue-quill-editor";
-
+import "mavon-editor/dist/css/index.css";
+import { mavonEditor } from "mavon-editor";
 import Right from "../../components/front/right";
 import Comment from "../../components/front/comment";
 export default {
@@ -41,9 +47,15 @@ export default {
       newViews: this.$route.query.views
     };
   },
+  components: {
+    Right,
+    Comment,
+    mavonEditor
+  },
   created() {
     this.getBlog();
   },
+
   methods: {
     //  根据id查询
     getBlog() {
@@ -65,10 +77,6 @@ export default {
         // console.log(res.data.data.views);
       });
     }
-  },
-  components: {
-    Right,
-    Comment
   }
 };
 </script>

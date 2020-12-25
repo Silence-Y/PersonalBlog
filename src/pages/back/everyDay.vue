@@ -38,7 +38,7 @@
             <el-button
               type="text"
               icon="el-icon-edit"
-              @click="handleEdit(scope.$index, scope.row.id, scope.row.ctime)"
+              @click="handleEdit(scope.$index, scope.row,scope.row.id, scope.row.ctime,)"
             >编辑</el-button>
             <el-button
               type="text"
@@ -71,7 +71,7 @@
       top="10vh"
       @close="resetForm('everyDayForm')"
     >
-      <el-form>
+      <el-form :model="everyDay">
         <!-- 编辑框 -->
         <el-form-item>
           <quill-editor ref="TextEditor" v-model="everyDay.content" :options="editorOption"></quill-editor>
@@ -190,17 +190,19 @@ export default {
     // 新增数据
     handleAdd() {
       this.dialogTitle = "新增每日一句";
-      // this.everyDay = Object.assign({}, this.userBackup);
+      this.everyDay = Object.assign({}, this.everyDayBackup);
       this.everyDayFormVisible = true;
     },
 
     // 编辑操作
-    handleEdit(index, id, ctime) {
+    handleEdit(index, row, id, ctime) {
+      console.log(row);
       this.newId = id;
       this.newCtime = ctime;
       // console.log(newId);
       this.dialogTitle = "编辑每日一句";
-      // this.everyDay = Object.assign({}, row);
+      // 数据回显
+      this.everyDay = Object.assign({}, this.everyDay, row);
       this.everyDayFormVisible = true;
       this.rowIndex = index;
     },
@@ -209,8 +211,8 @@ export default {
       const id = this.newId;
       // console.log(this.newId);
       this.everyDay.content = this.everyDay.content.replace(/<[^>]+>/g, "");
+      // 如果id存在就编辑
       if (id) {
-        // 如果id存在就编辑
         this.everyDay.id = this.newId;
         this.everyDay.ctime = this.newCtime;
         this.$http.put("/api/everyDay" + `/${id}`, this.everyDay).then(res => {
