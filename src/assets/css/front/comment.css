@@ -18,19 +18,19 @@
 }
 
 .addComment input {
-  width: 300px;
+  width: 266px;
   height: 30px;
   border-radius: 5px;
-  margin: 5px 10px 5px 30px;
+  margin: 5px 10px 5px 50px;
   padding: 5px 5px 5px 5px;
 }
 
 .addComment textarea {
-  width: 650px;
+  width: 600px;
   height: 200px;
   border-radius: 5px;
   border: 1px solid #000;
-  margin: 20px 10px 5px 30px;
+  margin: 20px 10px 5px 50px;
   font-size: 16px;
   padding: 5px 10px 5px 10px;
 }
@@ -43,7 +43,7 @@
   color: #fff;
   border: none;
   border-radius: 5px;
-  margin: 10px 10px 10px 30px;
+  margin: 10px 10px 10px 50px;
   margin-bottom: 20px;
   padding: 10px 10px 10px 10px;
   height: 45px;
@@ -56,27 +56,56 @@
 /* 评论显示 */
 #blogComment ul {
   width: 100%;
+  background: white;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
+  margin-bottom: 40px;
 }
 
 #blogComment ul li {
   list-style: none;
-  background: #d9edf7;
-  border: 1px dashed #7ca4c1;
   margin: 10px 0px 0px 0px;
-  padding: 10px 0px 10px 10px;
-  border-radius: 5px;
+  padding: 10px 10px 10px 50px;
+
 }
 
-#blogComment ul li span {
-  /*background: pink;*/
+#blogComment ul li .comment-author {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+#blogComment ul li .comment-author img {
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+/* #blogComment ul li .comment-author b,
+span {
+  top: 50%;
+} */
+
+#blogComment ul li .comment-author b {
+  font-weight: bold;
+}
+
+#blogComment ul li .comment-ctime {
+  color: #AAAAAA;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#blogComment ul li .comment-content {
+  font-size: 18px;
+}
+
+#blogComment ul li .comment-content p {
+  margin: 10px 0px 0px 0px;
+}
+
+/* #blogComment ul li span {
   padding: 5px 0px 5px 10px;
   font-weight: 700;
-}
-
-#blogComment ul li span a {
-  color: blue;
-}
-
-#blogComment ul li p {
-  margin: 20px 0px 0px 10px;
-}
+} */

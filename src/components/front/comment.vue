@@ -6,7 +6,7 @@
         <input type="hidden" />
         <input type="text" placeholder="昵称" v-model="comments.user_name" />
         <input type="text" placeholder="邮箱" v-model="comments.email" />
-        <textarea placeholder="无意义的内容我可能不会回复你" v-model="comments.content"></textarea>
+        <textarea placeholder="无意义的内容我可能不会回复你……" v-model="comments.content"></textarea>
         <span></span>
         <button @click="sendComment">发表评论</button>
       </div>
@@ -14,11 +14,26 @@
       <!-- 评论显示 -->
       <ul>
         <li v-for="(key, index) of commentsList" :key="index">
-          <span>
-            {{ key.user_name }}：发表于 {{ key.ctime }}
-            <a>[回复]</a>
-          </span>
-          <p>{{ key.content }}</p>
+          <!-- <span> -->
+          <!-- {{ key.user_name }}：发表于 {{ key.ctime }} -->
+          <!-- <a>[回复]</a> -->
+          <!-- </span> -->
+
+          <!-- 回复人 -->
+          <div class="comment-author">
+            <img src="../../assets/img/img1.jpg" alt />
+            <!-- <p>{{ key.user_name }}</p> -->
+            <b>{{ key.user_name }}</b>
+            <span>说道：</span>
+          </div>
+
+          <!-- 回复时间 -->
+          <div class="comment-ctime">{{ key.ctime }}</div>
+
+          <!-- 回复内容 -->
+          <div class="comment-content">
+            <p>{{ key.content }}</p>
+          </div>
         </li>
       </ul>
     </div>
