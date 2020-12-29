@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 @import "../../assets/css/front/base.css";
 </style>
 

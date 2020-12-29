@@ -1,9 +1,8 @@
 .content_right {
   /* position: absolute; */
-
   /* display: inline-block; */
   width: 25%;
-  margin: 40px 0px 0px 40px;
+  margin-left: 30px;
 }
 
 #tags_cloud {
