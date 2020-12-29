@@ -83,20 +83,7 @@ h6 {
 }
 
 /* 文本内容 */
-/* #blogList>ul>li>div .text {
-  position: relative;
-  display: inline-block;
-  width: 98%;
-  height: 60px;
-  font-size: 18px;
-  margin-bottom: 1.5em;
-  padding: 20px 20px 20px 20px;
-  word-wrap: break-word;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-} */
+
 #blogList>ul>li>p {
   position: relative;
   display: inline-block;

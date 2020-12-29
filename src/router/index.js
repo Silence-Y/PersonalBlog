@@ -19,7 +19,7 @@ const everyDay = resolve => require(['@/pages/back/everyDay'], resolve)
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     // 前台页面
     {
@@ -35,21 +35,21 @@ export default new Router({
           },
         },
         {
-          path: 'map',
+          path: '/map',
           name: 'map',
           component: map,
           meta: {
             title: '地图'
           }
         }, {
-          path: 'about',
+          path: '/about',
           name: 'about',
           component: about,
           meta: {
             title: '关于'
           }
         }, {
-          path: 'message',
+          path: '/message',
           name: 'message',
           component: message,
           meta: {
@@ -57,7 +57,7 @@ export default new Router({
           }
         },
         {
-          path: 'blogDetail',
+          path: '/blogDetail',
           name: 'blogDetail',
           component: blogDetail,
           meta: {

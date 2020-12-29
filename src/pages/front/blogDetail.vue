@@ -1,37 +1,29 @@
 <template>
-  <div class="content">
-    <!-- 左侧内容 -->
-    <div class="content_left">
-      <div id="blogDetail">
-        <!-- 标题 -->
-        <h1>{{ blog.title }}</h1>
-        <!-- 作者 -->
-        <h5>
-          作者:Silence.Y 发布于: {{ blog.ctime }} {{
-          blog.views
-          }}人阅读
-        </h5>
+  <div id="blogDetail">
+    <!-- 标题 -->
+    <h1>{{ blog.title }}</h1>
+    <!-- 作者 -->
+    <h5>
+      作者:Silence.Y 发布于: {{ blog.ctime }} {{
+      blog.views
+      }}人阅读
+    </h5>
 
-        <!-- 富文本样式显示 -->
-        <!-- <div class="ql-container ql-snow">
+    <!-- 富文本样式显示 -->
+    <!-- <div class="ql-container ql-snow">
           <div id="blog_content" class="ql-editor" v-html="blog.content">{{ blog.content }}</div>
-        </div>-->
-        <!-- vue展示markdown内容 -->
-        <!-- <div id="blog_content" class="markdown-body" v-html="blog.content">{{ blog.content }}</div> -->
-        <div v-highlight class="mavonEditor">
-          <mavon-editor id="blog_content" v-html="blog.content">{{ blog.content }}</mavon-editor>
-        </div>
-
-        <!-- <div id="blog_content" v-highlight v-html="blog.content">{{ blog.content }}</div> -->
-      </div>
-
-      <!-- 评论 -->
-      <!-- <Comment></Comment> -->
+    </div>-->
+    <!-- vue展示markdown内容 -->
+    <!-- <div id="blog_content" class="markdown-body" v-html="blog.content">{{ blog.content }}</div> -->
+    <div v-highlight class="mavonEditor">
+      <mavon-editor id="blog_content" v-html="blog.content">{{ blog.content }}</mavon-editor>
     </div>
 
-    <!-- 右侧内容 -->
-    <right></right>
+    <!-- <div id="blog_content" v-highlight v-html="blog.content">{{ blog.content }}</div> -->
   </div>
+
+  <!-- 评论 -->
+  <!-- <Comment></Comment> -->
 </template>
 
 <script>

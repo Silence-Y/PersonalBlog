@@ -4,20 +4,13 @@
     <div class="header_content" id="search">
       <!-- <span>Silence个人博客 | 技术博客</span> -->
       <span>Silence.Y 个人博客</span>
-      <ul>
-        <li>
-          <a href="/">首页</a>
-        </li>
-        <li>
-          <a href="/map">地图</a>
-        </li>
-        <li>
-          <a href="/about">关于</a>
-        </li>
-        <li>
-          <a href="/message">留言</a>
-        </li>
-      </ul>
+
+      <el-menu class="menu-nav" :default-active="currentPath" router>
+        <el-menu-item index="/home">首页</el-menu-item>
+        <el-menu-item index="/map">地图</el-menu-item>
+        <el-menu-item index="/about">关于</el-menu-item>
+        <el-menu-item index="/message">留言</el-menu-item>
+      </el-menu>
     </div>
 
     <!-- 图片 -->
@@ -33,6 +26,7 @@
 export default {
   data() {
     return {
+      currentPath: location.pathname,
       // 所有每日一句页面
       everyDay: ""
     };
@@ -55,5 +49,12 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/front/base.css";
+@import "../../assets/css/front/header.css";
+.menu-nav {
+  border: none;
+}
+.el-menu-item:focus,
+.el-menu-item:hover {
+  background-color: transparent;
+}
 </style>

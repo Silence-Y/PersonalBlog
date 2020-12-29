@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style>
-@import "..//../assets/css/back/icon.css";
+@import "../../assets/css/back/icon.css";
 @import "../../assets/css/back/main.css";
 @import "../../assets/css/back/color-dark.css"; /*深色主题*/
 /*@import "./assets/css/theme-green/color-green.css";   浅绿色主题*/

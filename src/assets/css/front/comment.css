@@ -82,10 +82,6 @@
   border-radius: 50%;
 }
 
-/* #blogComment ul li .comment-author b,
-span {
-  top: 50%;
-} */
 
 #blogComment ul li .comment-author b {
   font-weight: bold;

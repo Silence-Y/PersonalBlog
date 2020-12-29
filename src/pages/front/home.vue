@@ -1,47 +1,39 @@
 <template>
-  <div class="content">
-    <!-- 左侧内容 -->
-    <div class="content_left">
-      <!-- 博客 -->
-      <div id="blogList">
-        <ul>
-          <li v-for="(item, index) of blogs" :key="index">
-            <!-- 标题 -->
-            <router-link
-              :to="{
+  <!-- 博客 -->
+  <div id="blogList">
+    <ul>
+      <li v-for="(item, index) of blogs" :key="index">
+        <!-- 标题 -->
+        <router-link
+          :to="{
                   path: 'blogDetail',
                   query: { id: item.id, views: item.views }
                 }"
-              tag="h2"
-            >{{ item.title }}</router-link>
+          tag="h2"
+        >{{ item.title }}</router-link>
 
-            <!-- 发布时间 -->
-            <div class="items">
-              <h5>发布于{{ item.ctime }} | {{ item.views }}人阅读</h5>
-            </div>
+        <!-- 发布时间 -->
+        <div class="items">
+          <h5>发布于{{ item.ctime }} | {{ item.views }}人阅读</h5>
+        </div>
 
-            <!-- 富文本显示  内容-->
-            <!-- <div class="ql-container ql-snow">
+        <!-- 富文本显示  内容-->
+        <!-- <div class="ql-container ql-snow">
               <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
-            </div>-->
-            <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
+        </div>-->
+        <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
 
-            <!-- 显示更多 -->
-            <router-link
-              :to="{
+        <!-- 显示更多 -->
+        <router-link
+          :to="{
                   path: 'blogDetail',
                   query: { id: item.id, views: item.views }
                 }"
-              tag="h4"
-              class="read-more"
-            >READ MORE</router-link>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 右侧内容 -->
-    <Right></Right>
+          tag="h4"
+          class="read-more"
+        >READ MORE</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 

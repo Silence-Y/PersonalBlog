@@ -1,22 +1,14 @@
 <template>
-  <div class="content">
-    <!-- 左侧内容 -->
-    <div class="content_left">
-      <div id="about">
-        <h1>关于</h1>
-        <p>
-          博主Silence.Y
-          我的书单：https://book.douban.com/people/58553308/
-          我的知乎：https://www.zhihu.com/people/zheng-xiao-93-51/activities
-        </p>
-      </div>
-      <!-- 评论 -->
-      <!-- <Comment></Comment> -->
-    </div>
-
-    <!-- 右侧内容 -->
-    <Right></Right>
+  <div id="about">
+    <h1>关于</h1>
+    <p>
+      博主Silence.Y
+      我的书单：https://book.douban.com/people/58553308/
+      我的知乎：https://www.zhihu.com/people/zheng-xiao-93-51/activities
+    </p>
   </div>
+  <!-- 评论 -->
+  <!-- <Comment></Comment> -->
 </template>
 
 <script>
