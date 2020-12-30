@@ -43,11 +43,6 @@
   text-align: center;
 }
 
-.header_content>ul>li>a {
-  font-size: 14px;
-  line-height: 50px;
-  text-decoration: none;
-}
 
 /* 图片 */
 .site-header {

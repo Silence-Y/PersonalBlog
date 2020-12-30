@@ -12,11 +12,9 @@
 </template>
 
 <script>
-import Right from "../../components/front/right";
 import Comment from "../../components/front/comment";
 export default {
   components: {
-    Right,
     Comment
   }
 };

@@ -21,15 +21,11 @@
 </template>
 
 <script>
-import Right from "../../components/front/right";
 export default {
   data() {
     return {
       blogList: []
     };
-  },
-  components: {
-    Right
   },
   created() {
     this.getBlogs();

@@ -1,5 +1,5 @@
 <template>
-  <div class="content_right">
+  <div>
     <div id="tags_cloud">
       <h4>随机标签云</h4>
       <div>

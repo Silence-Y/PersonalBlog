@@ -2,15 +2,22 @@
   <div class="wrapper">
     <!-- 头部 -->
     <Header></Header>
+
     <!-- 中间内容 -->
     <div class="content">
-      <!-- 左侧内容 -->
-      <div class="content_left">
-        <router-view></router-view>
-      </div>
-      <!-- 右侧内容 -->
-      <Right></Right>
+      <el-row :gutter="30">
+        <!-- 左侧内容 -->
+        <el-col :span="18">
+          <router-view></router-view>
+        </el-col>
+
+        <!-- 右侧内容 -->
+        <el-col :span="6">
+          <Right></Right>
+        </el-col>
+      </el-row>
     </div>
+
     <!-- 底部 -->
     <!-- <footer></footer> -->
   </div>
@@ -30,7 +37,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped >
 @import "../../assets/css/front/base.css";
 </style>
 

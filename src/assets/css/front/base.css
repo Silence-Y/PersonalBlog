@@ -1,43 +1,17 @@
-* {
-  margin: 0px;
-  padding: 0px;
-}
-
-ul li {
-  list-style: none;
-}
-
-
 html,
 body,
 #app,
 .wrapper {
   width: 100%;
   height: 100%;
-
-}
-
-body {
-  background-color: #eceff1;
 }
 
 .content {
-  /* display: block;*/
-  /* position: relative; */
   display: flex;
   justify-content: center;
   width: 1150px;
   height: 100%;
-  /* top: 50px; */
-  margin: 55px auto 50px auto;
-}
-
-.content_left {
-  /* position: absolute;
-  display: inline-block; */
-  /* left: 0px;
-  top: 0px; */
-  width: 74%;
+  margin: 55px auto 20px auto;
 }
 
 

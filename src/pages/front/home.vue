@@ -1,7 +1,7 @@
 <template>
   <!-- 博客 -->
   <div id="blogList">
-    <ul>
+    <ul class>
       <li v-for="(item, index) of blogs" :key="index">
         <!-- 标题 -->
         <router-link
@@ -21,6 +21,7 @@
         <!-- <div class="ql-container ql-snow">
               <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
         </div>-->
+
         <p class="ql-editor text" v-html="item.content">{{ item.content }}</p>
 
         <!-- 显示更多 -->
@@ -38,7 +39,6 @@
 </template>
 
 <script>
-import Right from "../../components/front/right";
 export default {
   data() {
     return {
@@ -56,9 +56,6 @@ export default {
         this.blogs = res.data.data.datas;
       });
     }
-  },
-  components: {
-    Right
   }
 };
 </script>
