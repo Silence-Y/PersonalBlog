@@ -24,7 +24,7 @@ export default new Router({
     // 前台页面
     {
       path: '/',
-      redirect: 'home',
+      redirect: '/home',
       component: index,
       children: [{
           path: '/home',
