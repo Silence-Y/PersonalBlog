@@ -15,9 +15,17 @@ export default {
   margin: 0px;
   padding: 0px;
 }
+
+ul,
+li {
+  list-style: none;
+}
+
 body {
   background-color: #eceff1;
+  /* overflow-y: scroll; */
 }
+
 h1,
 h2,
 h3,
@@ -29,9 +37,5 @@ h6 {
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 400;
-}
-ul,
-li {
-  list-style: none;
 }
 </style>
