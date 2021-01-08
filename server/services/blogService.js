@@ -10,7 +10,7 @@ const {
 
 // 新增
 exports.addBlog = async function (blogObj) {
-  blogObj = pick(blogObj, "title", "content", "views", "ctime")
+  blogObj = pick(blogObj, "title", "md_content", "html_content", "views", "ctime")
   const ins = await Blog.create(blogObj);
   return ins.toJSON();
 };

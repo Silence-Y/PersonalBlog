@@ -2,7 +2,6 @@
   <div class="header">
     <!-- 导航 -->
     <div class="header_content" id="search">
-      <!-- <span>Silence个人博客 | 技术博客</span> -->
       <span>Silence.Y 个人博客</span>
 
       <el-menu class="menu-nav" :default-active="currentPath" router>

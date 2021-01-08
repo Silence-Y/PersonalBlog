@@ -1,5 +1,5 @@
 #blogList ul li {
-  height: 300px;
+  height: 320px;
   background: white;
   box-sizing: border-box;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
@@ -9,8 +9,9 @@
 #blogList ul li h2 {
   font-size: 30px;
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 10px;
+  padding: 30px 50px 10px 50px;
+  /* padding-top: 30px;
+  padding-bottom: 10px; */
   cursor: pointer;
 }
 
@@ -40,12 +41,14 @@
 
 #blogList ul li .swap .text {
   font-size: 18px;
+  height: 90px;
   line-height: 1.7em;
-  margin: 0px 30px 0px 30px;
-  overflow: hidden;
+  padding: 0 2.5em;
+  /* margin: 0px 40px 0px 40px; */
+  /* overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 3; */
 }
 
 

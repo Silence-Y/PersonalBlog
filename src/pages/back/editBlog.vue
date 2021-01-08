@@ -20,7 +20,7 @@
           <mavon-editor
             class="md"
             ref="md"
-            v-model="blog.content"
+            v-model="blog.md_content"
             :options="editorOption"
             @change="change"
             :ishljs="true"
@@ -50,13 +50,14 @@ export default {
       blog: {
         id: "",
         title: "",
-        content: "",
+        md_content: "",
+        html_content: "",
         views: "",
         tag: "",
         ctime: ""
       },
       // 及时转的html
-      html: "",
+      // html: "",
       editorOption: {
         placeholder: "Hello World"
       },
@@ -78,6 +79,7 @@ export default {
     // onEditorChange({ editor, html, text }) {
     //   this.content = html;
     // },
+    // 上传图片
     handleEditorImgAdd(pos, $file) {
       // 第一步，将图片上传到服务器
       var formdata = new FormData();
@@ -96,31 +98,22 @@ export default {
         //this.$refs.md.$img2Url(pos, url);
       });
     },
+    handleEditorImgDel() {},
+    // md格式转html格式
     change(value, render) {
-      this.html = render;
+      this.blog.html_content = render;
+      this.blog.md_content = value;
+      // console.log(value);
     },
     submit() {
       const id = this.$route.query.id;
-      // const $ = cheerio.load(html);
-      // console.log(id);
-      // let html = document
-      //   .querySelector(".quill-editor")
-      //   .innerHTML.replace(/<[^>]+>/g, "");
-      // // this.blog.content = html;
-      // // console.log(html);
-      // html = `<div class="ql-container ql-snow"><div class="ql-editor">${html}
-      //   </div></div>`;
-
       // 将提交的内容显示正常
-      // $("[content]").val(html);
       // console.log(this.html);
-      this.blog.content = this.html;
-      console.log(this.blog.content);
-
-      // this.blog.content = this.blog.content.replace(/<[^>]+>/g, "");
-
+      // this.blog.content = this.html;
+      console.log(this.blog.html_content);
+      console.log(this.blog.md_content);
+      // 如果id存在就编辑
       if (id) {
-        // 如果id存在就编辑
         this.blog.id = this.$route.query.id;
         this.blog.ctime = this.$route.query.newCtime;
         this.$http.put("/api/blog" + `/${id}`, this.blog).then(res => {

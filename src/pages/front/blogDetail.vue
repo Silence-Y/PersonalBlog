@@ -8,15 +8,14 @@
       blog.views
       }}人阅读
     </h5>
-
-    <!-- 富文本样式显示 -->
-    <!-- <div class="ql-container ql-snow">
-          <div id="blog_content" class="ql-editor" v-html="blog.content">{{ blog.content }}</div>
-    </div>-->
     <!-- vue展示markdown内容 -->
     <!-- <div id="blog_content" class="markdown-body" v-html="blog.content">{{ blog.content }}</div> -->
-    <div v-highlight class="mavonEditor">
-      <mavon-editor id="blog_content" v-html="blog.content">{{ blog.content }}</mavon-editor>
+    <div class="mavonEditor">
+      <mavon-editor
+        codeStyle="atom-one-dark"
+        id="blog_content"
+        v-html="blog.html_content"
+      >{{ blog.content }}</mavon-editor>
     </div>
 
     <!-- <div id="blog_content" v-highlight v-html="blog.content">{{ blog.content }}</div> -->

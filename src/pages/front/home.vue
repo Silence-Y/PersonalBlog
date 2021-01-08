@@ -19,7 +19,8 @@
 
         <!-- 内容区 -->
         <div class="swap">
-          <div class="ql-editor text" v-html="item.content">{{ item.content }}</div>
+          <!-- <div class="text" v-html="item.content">{{ ToText(item.content) }}</div> -->
+          <p class="text">{{ ToText(item.html_content) }}...</p>
           <!-- 显示更多 -->
           <router-link
             :to="{
@@ -46,6 +47,17 @@ export default {
     this.getBlogs();
   },
   methods: {
+    // 将html格式转为纯文本
+    ToText(HTML) {
+      var input = HTML;
+      return input
+        .replace(/<(style|script|iframe)[^>]*?>[\s\S]+?<\/\1\s*>/gi, "")
+        .replace(/<[^>]+?>/g, "")
+        .replace(/\s+/g, " ")
+        .replace(/ /g, " ")
+        .replace(/>/g, " ")
+        .slice(0, 120); //截取120字符
+    },
     // 获取博客
     getBlogs() {
       this.loading = true;

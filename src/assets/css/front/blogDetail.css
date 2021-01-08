@@ -33,4 +33,5 @@
   margin: 0 auto;
   /* 长单词换行到下一行 */
   word-wrap: break-word;
+  box-shadow: none;
 }

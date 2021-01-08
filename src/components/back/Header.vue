@@ -11,7 +11,8 @@
         <!-- 用户名下拉菜单 -->
         <el-dropdown class="user-name" trigger="click" @command="handleCommand">
           <span>
-            {{username}}
+            <!-- {{username}} -->
+            Silence.Y
             <i class="el-icon-caret-bottom"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
