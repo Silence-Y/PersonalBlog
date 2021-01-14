@@ -5,33 +5,33 @@
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
 }
 
-#blogDetail>h1 {
-  width: 100%;
+#blogDetail h1 {
   font-size: 36px;
   text-align: center;
-  padding: 30px 0px 0px 20px;
+  padding-top: 30px;
   /* height: 50px;
   line-height: 50px; */
 }
 
-#blogDetail>h5 {
-  display: inline-block;
-  width: 98%;
+#blogDetail h5 {
   font-size: 14px;
   text-align: center;
   color: #009688;
   height: 30px;
   line-height: 30px;
-  padding: 10px 0px 10px 10px;
+  padding-top: 10px;
 
 }
 
 /* 内容显示区 */
 #blog_content {
-  width: 90%;
-  padding: 10px 10px 40px 10px;
+  padding: 20px 40px 40px 40px;
   margin: 0 auto;
   /* 长单词换行到下一行 */
   word-wrap: break-word;
   box-shadow: none;
 }
+
+/* .markdown-editor {
+  box-shadow: none;
+} */

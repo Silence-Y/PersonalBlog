@@ -1,5 +1,19 @@
 <template>
   <div>
+    <!-- 公告栏 -->
+    <div id="notice_board">
+      <h4>公告栏</h4>
+      <div class="wrap">
+        <div class="public_notice">
+          <p>大家好，个人博客系统实现了基本的功能，之后会一直迭代更新的哈</p>
+        </div>
+        <div class="public_notice">
+          <p>博客系统增加上一篇和下一篇的按钮</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 随机标签云 -->
     <div id="tags_cloud">
       <h4>随机标签云</h4>
       <div>
@@ -12,6 +26,7 @@
       </div>
     </div>
 
+    <!-- 近期文章 -->
     <div id="recent_blog">
       <h4>近期文章</h4>
       <ul>

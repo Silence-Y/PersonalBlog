@@ -4,7 +4,12 @@
     <h1>{{ blog.title }}</h1>
     <!-- 作者 -->
     <h5>
-      作者:Silence.Y 发布于: {{ blog.ctime }} {{
+      <i class="el-icon-user-solid"></i>
+      Silence.Y
+      <i class="el-icon-date"></i>
+      {{ blog.ctime }}
+      <i class="el-icon-view"></i>
+      {{
       blog.views
       }}人阅读
     </h5>
@@ -12,11 +17,13 @@
     <!-- <div id="blog_content" class="markdown-body" v-html="blog.content">{{ blog.content }}</div> -->
     <div class="mavonEditor">
       <mavon-editor
-        codeStyle="atom-one-dark"
         id="blog_content"
         v-html="blog.html_content"
+        style="box-shadow:rgba(0, 0, 0)"
       >{{ blog.content }}</mavon-editor>
     </div>
+    <!-- 代码高亮，写在 mavon-editor里-->
+    <!-- codeStyle="atom-one-dark" -->
 
     <!-- <div id="blog_content" v-highlight v-html="blog.content">{{ blog.content }}</div> -->
   </div>

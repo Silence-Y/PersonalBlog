@@ -14,7 +14,14 @@
 
         <!-- 发布时间 -->
         <div class="items">
-          <h5>发布于{{ item.ctime }} | {{ item.views }}人阅读</h5>
+          <h5>
+            <i class="el-icon-user-solid"></i>
+            Silence.Y
+            <i class="el-icon-date"></i>
+            {{ item.ctime }}
+            <i class="el-icon-view"></i>
+            {{ item.views }}人阅读
+          </h5>
         </div>
 
         <!-- 内容区 -->
