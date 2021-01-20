@@ -8,16 +8,21 @@
 
 
 .header_content {
-  position: relative;
-  width: 1150px;
-  height: 100%;
-  margin: 0px auto 0px auto;
+  background: white;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  width: 100%;
+  height: 50px;
+
 }
+
 
 .header_content span {
   display: inline-block;
   position: absolute;
-  left: 0px;
+  left: 300px;
   top: 0px;
   height: 100%;
   width: 220px;
@@ -29,7 +34,7 @@
 .header_content ul {
   position: absolute;
   display: inline-block;
-  right: 0px;
+  right: 300px;
   top: 0px;
   width: 250px;
   height: 100%;
