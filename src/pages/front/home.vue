@@ -1,7 +1,7 @@
 <template>
   <!-- 博客 -->
   <div id="blogList">
-    <ul class>
+    <ul>
       <li v-for="(item, index) of blogs" :key="index">
         <!-- 标题 -->
         <router-link

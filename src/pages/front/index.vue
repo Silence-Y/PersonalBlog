@@ -1,17 +1,22 @@
 <template>
   <div class="wrapper">
-    <!-- 头部 -->
     <Header></Header>
+    <!-- <Header></Header> -->
+    <!-- <div class="content">
+      <div class="content_left">
+        <router-view></router-view>
+      </div>
+      <div class="content_right">
+        <Right></Right>
+      </div>
+    </div>-->
 
-    <!-- 中间内容 -->
     <div class="content">
       <el-row :gutter="30">
-        <!-- 左侧内容 -->
         <el-col :span="18">
           <router-view></router-view>
         </el-col>
 
-        <!-- 右侧内容 -->
         <el-col :span="6">
           <Right></Right>
         </el-col>

@@ -7,9 +7,15 @@
         <div class="public_notice">
           <p>大家好，个人博客系统实现了基本的功能，之后会一直迭代更新的哈</p>
         </div>
-        <div class="public_notice">
+        <!-- <div class="public_notice">
           <p>博客系统增加上一篇和下一篇的按钮</p>
         </div>
+        <div class="public_notice">
+          <p>博客系统实现响应式</p>
+        </div>
+        <div class="public_notice">
+          <p>博客系统改变导航的图标</p>
+        </div>-->
       </div>
     </div>
 

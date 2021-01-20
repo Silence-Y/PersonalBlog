@@ -11,14 +11,44 @@ body,
   overflow-y: scroll;
 }
 
+
+
+/* overflow: hidden; */
 .content {
-  overflow: hidden;
   display: flex;
   justify-content: center;
   width: 1150px;
   height: 100%;
+  padding: 0px 20px;
   margin: 55px auto 20px auto;
 }
+
+/* .content .content_left {
+  width: 75%;
+}
+
+.content .content_right {
+  width: 25%;
+  margin-left: 30px;
+} */
+
+/* 隐藏滚动条 */
+.content::-webkit-scrollbar {
+  width: 0 !important
+}
+
+.content .el-row {
+  height: 100%;
+}
+
+.content .el-row .el-col {
+  height: 100%;
+}
+
+/* .el-row :last-child {
+  margin-bottom: 0;
+} */
+
 
 
 
