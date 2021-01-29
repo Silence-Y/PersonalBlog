@@ -12,12 +12,12 @@
     </div>-->
 
     <div class="content">
-      <el-row :gutter="30">
-        <el-col :span="18">
+      <el-row :gutter="30" class="el-row">
+        <el-col :span="18" class="left-content">
           <router-view></router-view>
         </el-col>
 
-        <el-col :span="6">
+        <el-col :span="6" class="right-content">
           <Right></Right>
         </el-col>
       </el-row>

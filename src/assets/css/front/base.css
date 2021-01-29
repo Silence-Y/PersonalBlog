@@ -6,18 +6,50 @@ body,
   height: 100%;
 }
 
+@media(max-width:767px) {
+  body {
+    font-size: 16px;
+  }
+}
+
 .wrapper {
   overflow-y: scroll;
 }
 
 .content {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  display: block;
   width: 1150px;
   height: 100%;
-  padding: 0px 20px;
   margin: 55px auto 20px auto;
 }
+
+@media(max-width: 1225px) and (min-width: 998px) {
+  .content {
+    width: 970px;
+  }
+}
+
+@media(max-width: 998px) and (min-width: 768px) {
+  /* .content .right-content {
+    display: none;
+  } */
+
+  .content {
+    width: 750px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* .content .left-content {
+    display: none;
+  } */
+}
+
+
+
+
 
 
 /* 隐藏滚动条 */

@@ -1,10 +1,22 @@
 .header {
   position: relative;
   width: 100%;
+  /* height: 40%; */
   height: 530px;
-  background: white;
+  /* background: white; */
   /* margin-bottom: 15px; */
 }
+
+/* @media(min-width: 1200px) {
+  .header_content span {
+    left: 0px;
+  }
+
+  .header_content ul {
+    right: 0px;
+  }
+} */
+
 
 
 .header_content {
@@ -18,11 +30,27 @@
 
 }
 
+.header_content .nav-content {
+  width: 1150px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 992px) {
+  .header_content .nav-content {
+    width: 970px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header_content .nav-content {
+    width: 750px;
+  }
+}
 
 .header_content span {
-  display: inline-block;
-  position: absolute;
-  left: 300px;
   top: 0px;
   height: 100%;
   width: 220px;
@@ -32,9 +60,6 @@
 }
 
 .header_content ul {
-  position: absolute;
-  display: inline-block;
-  right: 300px;
   top: 0px;
   width: 250px;
   height: 100%;
@@ -51,22 +76,36 @@
 
 /* 图片 */
 .site-header {
-  position: absolute;
-  background: url(../../img/img3.jpg);
-  background-size: 1920px 480px;
+  position: relative;
+  background: url(../../img/img3.jpg) no-repeat;
+  /* background-size: 100%; */
+  /* background-size: 100vw 50vh; */
+  background-size: cover;
   width: 100%;
   height: 480px;
+  /* height: 100%; */
+  /* min-height: 120px; */
   top: 50px;
   text-align: center;
-  background-repeat: no-repeat;
+  margin-bottom: 3em;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  /* background-repeat: no-repeat; */
+}
+
+.site-header .site-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .site-header h1 {
   position: relative;
   color: #fff;
-  font-size: 3.5em;
+  font-size: 63px;
   font-weight: 700;
-  margin-top: 100px;
   text-shadow: rgba(255, 255, 255, 0.1) -1px -1px 1px,
     rgba(0, 0, 0, 0.5) 1px 1px 1px;
 }
@@ -90,4 +129,129 @@
   margin-top: 40px;
   text-shadow: rgba(255, 255, 255, 0.1) -1px -1px 1px,
     rgba(0, 0, 0, 0.5) 1px 1px 1px;
+}
+
+@media (max-width: 1919px) and (min-width: 1600px) {
+  .header {
+    height: 450px;
+  }
+
+  .site-header {
+    height: 400px;
+  }
+}
+
+
+@media (max-width: 1599px) and (min-width: 1440px) {
+  .header {
+    height: 410px;
+  }
+
+  .site-header {
+    height: 360px;
+  }
+}
+
+@media (max-width: 1439px) and (min-width: 1366px) {
+  .header {
+    height: 391px;
+  }
+
+  .site-header {
+    height: 341px;
+  }
+}
+
+
+@media (max-width: 1365px) and (min-width: 1280px) {
+  .header {
+    height: 370px;
+  }
+
+  .site-header {
+    height: 320px;
+    margin-bottom: 2.5em;
+  }
+}
+
+
+@media (max-width: 1279px) and (min-width: 980px) {
+  .header {
+    height: 290px;
+  }
+
+  .site-header {
+    height: 245px;
+    margin-bottom: 2.5em;
+
+  }
+
+  .site-header h1 {
+    font-size: 48px;
+  }
+
+  .site-header h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+  .header {
+    height: 242px;
+  }
+
+  .site-header {
+    height: 192px;
+    margin-bottom: 2em;
+  }
+
+  .site-header h1 {
+    font-size: 48px;
+  }
+
+  .site-header h2 {
+    font-size: 18px;
+    margin-top: 30px;
+  }
+}
+
+/* 导航折叠 */
+@media (max-width: 767px) and (min-width: 360px) {
+  .header {
+    height: 220px;
+  }
+
+  .site-header {
+    height: 170px;
+    margin-bottom: 2em;
+  }
+
+  .site-header h1 {
+    font-size: 32px;
+  }
+
+  .site-header h2 {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 359px) {
+  .header {
+    height: 140px;
+  }
+
+  .site-header {
+    min-height: 90px;
+    margin-bottom: 1.5em;
+  }
+
+  .site-header h1 {
+    font-size: 24px;
+  }
+
+  .site-header h2 {
+    font-size: 12px;
+    margin-top: 20px;
+  }
 }
