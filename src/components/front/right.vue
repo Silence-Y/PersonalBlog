@@ -5,17 +5,10 @@
       <h4>公告栏</h4>
       <div class="wrap">
         <div class="public_notice">
-          <p>大家好，个人博客系统实现了基本的功能，之后会一直迭代更新的哈</p>
+          <p>
+            大家好，个人博客系统实现了基本的功能，之后会一直迭代更新,欢迎大家提bug哈
+          </p>
         </div>
-        <!-- <div class="public_notice">
-          <p>博客系统增加上一篇和下一篇的按钮</p>
-        </div>
-        <div class="public_notice">
-          <p>博客系统实现响应式</p>
-        </div>
-        <div class="public_notice">
-          <p>博客系统改变导航的图标</p>
-        </div>-->
       </div>
     </div>
 
@@ -28,7 +21,8 @@
           :key="index"
           v-bind:href="key.url"
           :style="{ color: randColor(), fontSize: randSize() }"
-        >{{ key.tag }}</a>
+          >{{ key.tag }}</a
+        >
       </div>
     </div>
 
@@ -37,7 +31,11 @@
       <h4>近期文章</h4>
       <ul>
         <li v-for="(item, index) of blogList" :key="index">
-          <router-link :to="{ path: 'blogDetail', query: { id: item.id } }" tag="a">{{ item.title }}</router-link>
+          <router-link
+            :to="{ path: 'blogDetail', query: { id: item.id } }"
+            tag="a"
+            >{{ item.title }}</router-link
+          >
         </li>
       </ul>
     </div>

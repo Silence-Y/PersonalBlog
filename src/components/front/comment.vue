@@ -1,12 +1,15 @@
 <template>
   <div>
     <div id="blogComment">
-      <div class="addComment" id="addComment">
+      <div class="addComment">
         <p>发表评论</p>
         <input type="hidden" />
         <input type="text" placeholder="昵称" v-model="comments.user_name" />
         <input type="text" placeholder="邮箱" v-model="comments.email" />
-        <textarea placeholder="无意义的内容我可能不会回复你……" v-model="comments.content"></textarea>
+        <textarea
+          placeholder="无意义的内容我可能不会回复你……"
+          v-model="comments.content"
+        ></textarea>
         <span></span>
         <button @click="sendComment">发表评论</button>
       </div>

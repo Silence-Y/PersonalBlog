@@ -1,17 +1,13 @@
 #blogList ul li {
-  height: 320px;
   background: white;
-  /* box-sizing: border-box; */
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
-  margin-bottom: 40px;
+  margin-bottom: 1.5em;
 }
 
 #blogList ul li h2 {
   font-size: 30px;
   text-align: center;
   padding: 30px 50px 10px 50px;
-  /* padding-top: 30px;
-  padding-bottom: 10px; */
   cursor: pointer;
 }
 
@@ -33,33 +29,26 @@
 }
 
 /* 文本内容 */
-#blogList ul li .swap {
-  height: 160px;
-  /* display: flex; */
-  /* text-align: justify; */
-}
+
 
 #blogList ul li .swap .text {
   font-size: 18px;
-  height: 90px;
+  /* height: 90px; */
   line-height: 1.7em;
   padding: 0 2.5em;
-  /* margin: 0px 40px 0px 40px; */
-  /* overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; */
+  margin-bottom: 30px;
+
 }
 
 
-#blogList ul li .swap h4 {
+#blogList ul li .swap p:nth-of-type(2) {
   font-size: 14px;
-  margin-top: 30px;
+  padding-bottom: 30px;
   text-align: center;
   cursor: pointer;
 }
 
-#blogList ul li .swap h4::after {
+#blogList ul li .swap p:nth-of-type(2)::after {
   width: 80px;
   display: block;
   height: 1px;
@@ -68,6 +57,33 @@
   content: "";
 }
 
-#blogList ul li .swap h4:hover {
+#blogList ul li .swap p:nth-of-type(2):hover {
   color: #009688;
+}
+
+@media(max-width:768px) {
+
+  #blogList ul li h2 {
+    font-size: 24px;
+  }
+
+  #blogList ul li .swap .text {
+    font-size: 14px;
+  }
+
+  #blogList ul li .swap h4 {
+    font-size: 12px;
+  }
+
+  #blogList ul li .items {
+    padding-bottom: 10px;
+  }
+
+  #blogList ul li .items h5 {
+    font-size: 12px;
+  }
+
+  #blogList ul li .swap p:nth-of-type(2) {
+    font-size: 12px;
+  }
 }

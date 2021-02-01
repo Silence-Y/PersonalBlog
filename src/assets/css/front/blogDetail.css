@@ -5,6 +5,10 @@
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
 }
 
+.bd_content {
+  width: 100%;
+}
+
 #blogDetail h1 {
   font-size: 36px;
   text-align: center;
@@ -23,15 +27,31 @@
 
 }
 
+
+
 /* 内容显示区 */
-#blog_content {
+.markdown-body {
   padding: 20px 40px 40px 40px;
   margin: 0 auto;
   /* 长单词换行到下一行 */
   word-wrap: break-word;
   box-shadow: none;
+  z-index: 1;
 }
 
-/* .markdown-editor {
-  box-shadow: none;
-} */
+@media(max-width:768px) {
+  #blogDetail h1 {
+    font-size: 28px;
+  }
+
+  #blogDetail h5 {
+    font-size: 12px;
+  }
+
+  .markdown-body {
+    font-size: 14px;
+    padding: 20px;
+    /* 修改一下最小的宽度 */
+    min-width: 60%;
+  }
+}

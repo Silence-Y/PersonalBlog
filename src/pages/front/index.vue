@@ -1,23 +1,14 @@
 <template>
   <div class="wrapper">
     <Header></Header>
-    <!-- <Header></Header> -->
-    <!-- <div class="content">
-      <div class="content_left">
-        <router-view></router-view>
-      </div>
-      <div class="content_right">
-        <Right></Right>
-      </div>
-    </div>-->
 
     <div class="content">
       <el-row :gutter="30" class="el-row">
-        <el-col :span="18" class="left-content">
+        <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18" class="left-content">
           <router-view></router-view>
         </el-col>
 
-        <el-col :span="6" class="right-content">
+        <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6" class="right-content">
           <Right></Right>
         </el-col>
       </el-row>

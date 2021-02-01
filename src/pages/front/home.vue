@@ -6,11 +6,12 @@
         <!-- 标题 -->
         <router-link
           :to="{
-                  path: 'blogDetail',
-                  query: { id: item.id, views: item.views }
-                }"
+            path: 'blogDetail',
+            query: { id: item.id, views: item.views }
+          }"
           tag="h2"
-        >{{ item.title }}</router-link>
+          >{{ item.title }}</router-link
+        >
 
         <!-- 发布时间 -->
         <div class="items">
@@ -31,12 +32,13 @@
           <!-- 显示更多 -->
           <router-link
             :to="{
-                  path: 'blogDetail',
-                  query: { id: item.id, views: item.views }
-                }"
-            tag="h4"
+              path: 'blogDetail',
+              query: { id: item.id, views: item.views }
+            }"
+            tag="p"
             class="read-more"
-          >READ MORE</router-link>
+            >READ MORE</router-link
+          >
         </div>
       </li>
     </ul>
@@ -63,7 +65,7 @@ export default {
         .replace(/\s+/g, " ")
         .replace(/ /g, " ")
         .replace(/>/g, " ")
-        .slice(0, 120); //截取120字符
+        .slice(0, 100); //截取120字符
     },
     // 获取博客
     getBlogs() {

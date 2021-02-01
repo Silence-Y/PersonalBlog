@@ -1,29 +1,15 @@
 <template>
-  <div class="header">
+  <div id="header">
     <!-- 导航 -->
-    <div class="header_content">
+    <header class="header-content">
+      <!-- 导航页面 -->
       <div class="nav-content">
+        <!-- 左侧 -->
         <div class="nav-fold">
           <span>Silence.Y 个人博客</span>
-
-          <!-- <i class="el-icon-menu"></i> -->
         </div>
-        <!-- <el-dropdown>
-          <el-button type="button" class="menu-toggle">
-            <i class="el-icon-s-operation"></i>
-          </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
-              <a href="/home">首页</a>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <a href="/map">地图</a>
-            </el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus-outline">关于</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-check">留言</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>-->
 
+        <!-- 右侧 -->
         <el-menu class="menu-nav" :default-active="currentPath" router>
           <el-menu-item index="/home">首页</el-menu-item>
           <el-menu-item index="/map">地图</el-menu-item>
@@ -31,16 +17,19 @@
           <el-menu-item index="/message">留言</el-menu-item>
         </el-menu>
       </div>
-    </div>
+    </header>
 
-    <!-- 图片 -->
-    <div class="site-header">
-      <div class="site-text">
+    <!-- 图片 banner -->
+    <section id="banner">
+      <a href>
+        <img src="../../assets/img/img3.jpeg" alt />
+      </a>
+
+      <!-- <div class="site-text">
         <h1>Silence.Y</h1>
-        <!-- 每日一句 -->
         <h2>{{ everyDay }}</h2>
-      </div>
-    </div>
+      </div>-->
+    </section>
   </div>
 </template>
 

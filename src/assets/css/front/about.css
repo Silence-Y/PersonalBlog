@@ -1,16 +1,25 @@
 #about {
+  width: 100%;
+  height: 400px;
   background: white;
-  height: 500px;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
+  margin-bottom: 40px;
+
 }
 
-#about h1 {
+#about .ab_content {
+  width: 85%;
+  margin: 0 auto;
+}
+
+
+#about .ab_content h1 {
   text-align: center;
   font-size: 36px;
-  padding: 30px 20px 30px 20px;
+  padding-top: 30px;
 }
 
-#about h1::after {
+#about .ab_content h1::after {
   width: 60px;
   display: block;
   height: 2px;
@@ -19,6 +28,24 @@
   content: "";
 }
 
-#about p {
-  padding: 20px 20px 20px 20px;
+#about .ab_content p {
+  padding: 20px;
+  word-break: break-all;
+}
+
+#about .ab_content a {
+  display: block;
+  padding: 0px 20px 20px 20px;
+  color: #607D8B;
+  text-decoration: none;
+}
+
+#about .ab_content a:hover {
+  color: #337ab7;
+}
+
+@media(max-width:768px) {
+  #about .ab_content h1 {
+    font-size: 28px;
+  }
 }

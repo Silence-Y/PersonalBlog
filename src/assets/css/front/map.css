@@ -9,10 +9,15 @@
 }
 
 #map .nav h1 {
+  width: 80%;
+  margin: 0 auto;
   text-align: center;
-  padding: 30px 10px 10px 10px;
+  padding-top: 30px;
   font-size: 36px;
+  font-weight: 700;
 }
+
+
 
 #map .nav h1::after {
   position: absolute;
@@ -25,6 +30,8 @@
   background-color: #009688;
   content: "";
 }
+
+
 
 #map .nav .item {
   padding: 30px 10px 10px 10px;
@@ -43,7 +50,7 @@
 #map .catalogue {
   /* padding-bottom: 20px; */
   position: relative;
-  margin: 0px auto 20px auto;
+  margin: 0px auto 40px auto;
   width: 90%;
   padding: 10px 20px 10px 20px;
 }
@@ -91,4 +98,24 @@
   margin-top: 8px;
   background-color: #009688;
   content: "";
+}
+
+@media(max-width:768px) {
+  #map .nav h1 {
+    font-size: 28px;
+    width: 100%;
+  }
+
+  #map .nav h1::after {
+    top: 75px;
+  }
+
+  #map .catalogue h2 {
+    font-size: 24px;
+  }
+
+  #map .catalogue h2::after {
+    font-size: 24px;
+    top: 55px;
+  }
 }

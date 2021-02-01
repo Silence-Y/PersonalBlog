@@ -2,14 +2,13 @@
   width: 100%;
   background: white;
   height: 300px;
-  /* margin: 40px 0px 0px 0px; */
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
 }
 
 #comment h1 {
   text-align: center;
   font-size: 36px;
-  padding: 30px 20px 30px 20px;
+  padding-top: 30px;
 }
 
 #comment h1::after {
@@ -23,4 +22,10 @@
 
 #comment p {
   padding: 20px 50px 20px 50px;
+}
+
+@media(max-width:768px) {
+  #comment h1 {
+    font-size: 28px;
+  }
 }
