@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="right">
     <!-- 公告栏 -->
     <div id="notice_board">
       <h4>公告栏</h4>

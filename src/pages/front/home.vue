@@ -10,8 +10,7 @@
             query: { id: item.id, views: item.views }
           }"
           tag="h2"
-          >{{ item.title }}</router-link
-        >
+        >{{ item.title }}</router-link>
 
         <!-- 发布时间 -->
         <div class="items">
@@ -37,8 +36,7 @@
             }"
             tag="p"
             class="read-more"
-            >READ MORE</router-link
-          >
+          >READ MORE</router-link>
         </div>
       </li>
     </ul>
@@ -81,4 +79,3 @@ export default {
 <style scoped>
 @import "../../assets/css/front/home.css";
 </style>
-

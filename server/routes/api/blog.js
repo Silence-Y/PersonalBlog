@@ -22,7 +22,7 @@ router.get("/:id",
     return await blogServ.getBlogById(req.params.id);
   }))
 
-// 根据id查询查询最新的数据
+// 根据id查询最新的数据
 router.get("/getLastBlog",
   asyncHandler(async (req, res) => {
     return await blogServ.getLastBlog();

@@ -1,35 +1,47 @@
 <template>
-  <div id="blogDetail">
-    <div class="bd_content">
-      <!-- 标题 -->
-      <h1>{{ blog.title }}</h1>
-      <!-- 作者 -->
-      <h5>
-        <i class="el-icon-user-solid"></i>
-        Silence.Y
-        <i class="el-icon-date"></i>
-        {{ blog.ctime }}
-        <i class="el-icon-view"></i>
-        {{ blog.views }}人阅读
-      </h5>
-      <!-- vue展示markdown内容 -->
-      <!-- <div id="blog_content" class="markdown-body" v-html="blog.content">{{ blog.content }}</div> -->
-      <!-- <div class="text_mavonEditor"> -->
-      <mavon-editor
-        v-html="blog.html_content"
-        style="box-shadow:rgba(0, 0, 0)"
-        >{{ blog.content }}</mavon-editor
-      >
-      <!-- </div> -->
+  <div>
+    <div id="blogDetail">
+      <!-- 详情页内容 -->
+      <div class="bd_content">
+        <!-- 标题 -->
+        <h1>{{ blog.title }}</h1>
+        <!-- 作者 -->
+        <h5>
+          <i class="el-icon-user-solid"></i>
+          Silence.Y
+          <i class="el-icon-date"></i>
+          {{ blog.ctime }}
+          <i class="el-icon-view"></i>
+          {{ blog.views }}人阅读
+        </h5>
+        <!-- <div class="text_mavonEditor"> -->
+        <mavon-editor v-html="blog.html_content" style="box-shadow:rgba(0, 0, 0)">{{ blog.content }}</mavon-editor>
+        <!-- </div> -->
+      </div>
+
+      <!-- 代码高亮，写在 mavon-editor里-->
+      <!-- codeStyle="atom-one-dark" -->
+      <div class="line"></div>
+      <!-- 上一篇和下一篇 -->
+      <div class="other">
+        <div class="prev">上一篇</div>
+        <div class="next">下一篇</div>
+      </div>
+      <!-- <hr />
+    
+    <div class="other">
+      <div
+        v-for="other in otherBlogList "
+        :key="other.id"
+        :class="other.type"
+        :title="other.title"
+        @click="handleClick(other.id)"
+      >{{other.title}}</div>
+      </div>-->
     </div>
-
-    <!-- 代码高亮，写在 mavon-editor里-->
-    <!-- codeStyle="atom-one-dark" -->
-    <!-- <div id="blog_content" v-highlight v-html="blog.content">{{ blog.content }}</div> -->
+    <!-- 评论 -->
+    <Comment></Comment>
   </div>
-
-  <!-- 评论 -->
-  <!-- <Comment></Comment> -->
 </template>
 
 <script>
@@ -42,7 +54,9 @@ export default {
     return {
       blog: "",
       newId: this.$route.query.id,
-      newViews: this.$route.query.views
+      newViews: this.$route.query.views,
+      blogs: [],
+      index: ""
     };
   },
   components: {
@@ -52,13 +66,81 @@ export default {
   },
   created() {
     this.getBlog();
+    this.getBlogs();
+    this.previous();
+  },
+  computed: {
+    // 将除了当前文章的内容，放到一个list中
+    // otherBlogList() {
+    //   const arr = [];
+    //   if (this.blog.prev) {
+    //     const { prev, prevId } = this.blog;
+    //     arr.push({ type: "prev", title: prev, id: prevId });
+    //   }
+    //   if (this.blog.next) {
+    //     const { next, nextId } = this.blog;
+    //     arr.push({ type: "next", title: next, id: nextId });
+    //   }
+    //   return arr;
+    // }
   },
 
   methods: {
+    // 查询上一篇和下一篇
+    // 调取外面列表的接口，将传过来的值给接口利用filter来获取id
+    // handleClick(id) {
+    //   this.$router.push({
+    //     name: "blogDetail",
+    //     params: {
+    //       id
+    //     }
+    //   });
+    // },
+    // 获取博客列表
+    getBlogs() {
+      // this.loading = true;
+
+      this.$http("/api/blog").then(res => {
+        // 博客列表
+        this.blogs = res.data.data.datas;
+        // 过滤出当前博客信息的id值，获取当前博客信息的索引
+        // value是单个博客的信息
+        const filterData = this.blogs.filter((v, i) => {
+          // 如果是当前博客，就让它的索引为i,v是
+          if (v.id == this.$route.query.id) {
+            this.index = i;
+            return v;
+          }
+          //
+          // console.log(filterData[0]);
+          // 这个就是当前博客的信息
+          // this.data=filterData[0]
+        });
+        return this.index;
+        // console.log(this.index); //1
+      });
+
+      //这个就是当前的信息
+      // this.data=filterData[0]
+
+      console.log(this.index);
+    },
+
+    previous() {
+      // console.log(this.index);
+      if (this.index > 0) {
+        this.index -= 1;
+        this.blog = this.blogs[this.index];
+        // console.log(this.blog);
+      }
+    },
+
+    // next() {},
     //  根据id查询
     getBlog() {
       this.loading = true;
       // console.log(typeof Number(this.newViews));
+      // this.$http.get("/api/blog/`${this.newId}`").then(res => {
       this.$http.get("/api/blog/" + this.newId).then(res => {
         // console.log(res.data.data);
         this.blog = res.data.data;
@@ -82,4 +164,18 @@ export default {
 
 <style scoped>
 @import "../../assets/css/front/blogDetail.css";
+.line {
+  border-top: 1px dotted #000;
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+}
+.other {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  padding: 40px 0;
+}
 </style>
