@@ -28,7 +28,8 @@ const Blog = sequelize.define('Blog', {
     get() {
       return moment(this.getDataValue('ctime')).format('YYYY-MM-DD HH:mm:ss');
     }
-  }
+  },
+
 }, {
   createdAt: false,
   updatedAt: false,

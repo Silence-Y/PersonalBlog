@@ -28,6 +28,12 @@ router.get("/getLastBlog",
     return await blogServ.getLastBlog();
   }))
 
+// 查询上一个博客
+router.get("/getPrevBlog/:id",
+  asyncHandler(async (req, res) => {
+    return await blogServ.getPrevBlog(req.params.id)
+  }))
+
 // 新增博客
 router.post("/",
   asyncHandler(async (req, res, next) => {

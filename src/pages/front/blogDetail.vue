@@ -66,25 +66,9 @@ export default {
   },
   created() {
     this.getBlog();
-    this.getBlogs();
+    // this.getBlogs();
     this.previous();
   },
-  computed: {
-    // 将除了当前文章的内容，放到一个list中
-    // otherBlogList() {
-    //   const arr = [];
-    //   if (this.blog.prev) {
-    //     const { prev, prevId } = this.blog;
-    //     arr.push({ type: "prev", title: prev, id: prevId });
-    //   }
-    //   if (this.blog.next) {
-    //     const { next, nextId } = this.blog;
-    //     arr.push({ type: "next", title: next, id: nextId });
-    //   }
-    //   return arr;
-    // }
-  },
-
   methods: {
     // 查询上一篇和下一篇
     // 调取外面列表的接口，将传过来的值给接口利用filter来获取id
@@ -97,42 +81,46 @@ export default {
     //   });
     // },
     // 获取博客列表
-    getBlogs() {
-      // this.loading = true;
+    // getBlogs() {
+    //   // this.loading = true;
 
-      this.$http("/api/blog").then(res => {
-        // 博客列表
-        this.blogs = res.data.data.datas;
-        // 过滤出当前博客信息的id值，获取当前博客信息的索引
-        // value是单个博客的信息
-        const filterData = this.blogs.filter((v, i) => {
-          // 如果是当前博客，就让它的索引为i,v是
-          if (v.id == this.$route.query.id) {
-            this.index = i;
-            return v;
-          }
-          //
-          // console.log(filterData[0]);
-          // 这个就是当前博客的信息
-          // this.data=filterData[0]
-        });
-        return this.index;
-        // console.log(this.index); //1
-      });
-
-      //这个就是当前的信息
-      // this.data=filterData[0]
-
-      console.log(this.index);
-    },
+    //   this.$http("/api/blog").then(res => {
+    //     const self = this;
+    //     // 博客列表
+    //     this.blogs = res.data.data.datas;
+    //     console.log(this.blogs);
+    //     // 过滤出当前博客信息的id值，获取当前博客信息的索引
+    //     // value是单个博客的信息
+    //     const filterData = this.blogs.filter(function(v, i) {
+    //       // 如果是当前博客，就让它的索引为i,v是
+    //       if (v.id == self.$route.query.id) {
+    //         // const index = i;
+    //         self.index = i;
+    //         return v;
+    //         // return { v, index };
+    //       }
+    //       // 这个就是当前博客的信息
+    //       // this.data=filterData[0]
+    //     });
+    //     // return this.index;
+    //     // console.log(this);
+    //     // console.log(this.index); //1
+    //   });
+    //   console.log(this);
+    //   console.log(this.index);
+    // },
 
     previous() {
+      // console.log(this);
       // console.log(this.index);
-      if (this.index > 0) {
-        this.index -= 1;
-        this.blog = this.blogs[this.index];
-        // console.log(this.blog);
-      }
+      // if (this.index > 0) {
+      //   this.index -= 1;
+      //   this.blog = this.blogs[this.index];
+      //   // console.log(this.blog);
+      // }
+      this.$http.get("/api/blog/getPrevBlog" + this.newId).then(res => {
+        console.log(res);
+      });
     },
 
     // next() {},

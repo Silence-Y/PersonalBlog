@@ -12,7 +12,8 @@
         <!-- 右侧 -->
         <el-menu class="menu-nav" :default-active="currentPath" router>
           <el-menu-item index="/home">首页</el-menu-item>
-          <el-menu-item index="/map">地图</el-menu-item>
+          <el-menu-item index="/map">技术博客</el-menu-item>
+          <el-menu-item index="/map">随笔</el-menu-item>
           <el-menu-item index="/about">关于</el-menu-item>
           <el-menu-item index="/message">留言</el-menu-item>
         </el-menu>

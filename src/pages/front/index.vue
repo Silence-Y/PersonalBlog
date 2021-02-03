@@ -8,7 +8,6 @@
           <router-view></router-view>
         </el-col>
 
-
         <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
           <Right></Right>
         </el-col>
