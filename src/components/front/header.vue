@@ -10,16 +10,47 @@
         </div>
 
         <!-- 右侧 -->
-        <el-menu class="menu-nav" :default-active="currentPath" router>
+        <el-menu class="menu-nav" :default-active="currentPath" mode="horizontal" router>
           <el-menu-item index="/home">首页</el-menu-item>
           <el-menu-item index="/map">技术博客</el-menu-item>
-          <el-menu-item index="/map">随笔</el-menu-item>
+          <el-menu-item index="#">随笔</el-menu-item>
           <el-menu-item index="/about">关于</el-menu-item>
           <el-menu-item index="/message">留言</el-menu-item>
         </el-menu>
       </div>
     </header>
-
+    <!-- <div class="nav">
+      <el-menu class="menu-nav" :default-active="currentPath" :collapse="isCollapse" router>
+        <el-menu-item index="/home">首页</el-menu-item>
+        <el-menu-item index="/map">技术博客</el-menu-item>
+        <el-menu-item index="#">随笔</el-menu-item>
+        <el-menu-item index="/about">关于</el-menu-item>
+        <el-menu-item index="/message">留言</el-menu-item>
+      </el-menu>
+    </div>-->
+    <!-- 隐藏是右侧显示 -->
+    <div class="drawer">
+      <!-- <el-button class="btn" v-model="isCollapse" @click="handle">点击</el-button> -->
+      <!-- <i class="el-icon-s-fold"></i> -->
+      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+        <el-radio-button :label="false">展开</el-radio-button>
+        <el-radio-button :label="true">收起</el-radio-button>
+      </el-radio-group>
+      <el-menu
+        class="el-menu-vertical-demo fold"
+        :default-active="currentPath"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+        router
+      >
+        <el-menu-item index="/home">首页</el-menu-item>
+        <el-menu-item index="/map">技术博客</el-menu-item>
+        <el-menu-item index="#">随笔</el-menu-item>
+        <el-menu-item index="/about">关于</el-menu-item>
+        <el-menu-item index="/message">留言</el-menu-item>
+      </el-menu>
+    </div>
     <!-- 图片 banner -->
     <section id="banner">
       <a href>
@@ -40,13 +71,20 @@ export default {
     return {
       currentPath: location.pathname,
       // 所有每日一句页面
-      everyDay: ""
+      everyDay: "",
+      isCollapse: true
     };
   },
   created() {
     this.getEveryDay();
   },
   methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
     // 获取每日一句
     getEveryDay() {
       this.$http.get("/api/everyDay/getLastEveryDay").then(res => {
@@ -62,6 +100,10 @@ export default {
 
 <style scoped>
 @import "../../assets/css/front/header.css";
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
 .menu-nav {
   border: none;
 }
