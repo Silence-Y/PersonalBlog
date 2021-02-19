@@ -60,9 +60,7 @@
 
 #blogComment ul li {
   list-style: none;
-  margin: 10px 0px 0px 0px;
   padding: 10px 50px;
-
 }
 
 #blogComment ul li .comment-author {
@@ -106,11 +104,14 @@
   }
 
   .addComment input {
+    height: 20px;
     margin: 5px 20px;
   }
 
   .addComment textarea {
+    height: 120px;
     margin: 5px 20px;
+    font-size: 14px;
   }
 
   .addComment button {
@@ -120,8 +121,22 @@
   }
 
   #blogComment ul li {
-    padding: 10px 20px;
+    padding: 8px 20px;
 
+  }
+
+  #blogComment ul li .comment-author img {
+    width: 25px;
+    height: 25px;
+  }
+
+  #blogComment ul li .comment-author {
+    font-size: 14px;
+  }
+
+  #blogComment ul li .comment-ctime {
+    font-size: 12px;
+    margin-top: 10px;
   }
 
   #blogComment ul li .comment-content {

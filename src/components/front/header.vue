@@ -19,6 +19,19 @@
         </el-menu>
       </div>
     </header>
+
+    <!-- 下拉菜单 -->
+    <transition name="dropdown-fade-show">
+      <div v-show="dropDownShow" class="dropdown">
+        <el-menu class="menu-nav" :default-active="currentPath" :collapse="isCollapse" router>
+          <el-menu-item index="/home">首页</el-menu-item>
+          <el-menu-item index="/map">技术博客</el-menu-item>
+          <el-menu-item index="#">随笔</el-menu-item>
+          <el-menu-item index="/about">关于</el-menu-item>
+          <el-menu-item index="/message">留言</el-menu-item>
+        </el-menu>
+      </div>
+    </transition>
     <!-- <div class="nav">
       <el-menu class="menu-nav" :default-active="currentPath" :collapse="isCollapse" router>
         <el-menu-item index="/home">首页</el-menu-item>
@@ -73,7 +86,9 @@ export default {
       currentPath: location.pathname,
       // 所有每日一句页面
       everyDay: "",
-      isCollapse: true
+      isCollapse: true,
+      dropDownShow: false, // 控制下拉菜单显示
+      activeName: "" // 导航栏激活名称
     };
   },
   created() {
