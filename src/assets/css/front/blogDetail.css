@@ -48,25 +48,15 @@
 }
 
 .other {
-  display: flex;
-  justify-content: space-between;
   margin: 0 auto;
   width: 90%;
   height: 100%;
   padding: 40px 0;
 }
 
-/* .other .prev {
-  display: inline-block;
-  width: 50%;
-}
-
 .other .next {
-  display: inline-block;
-  width: 50%;
-  right: 10px;
-  margin-left: 335px;
-} */
+  float: right;
+}
 
 .other a {
   text-decoration: none;

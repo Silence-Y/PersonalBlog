@@ -32,8 +32,8 @@
           <i class="el-icon-back"></i>
           <a @click="prevPage(prevPageBlog.id)">{{ prevPageBlog.title }}</a>
         </span>
-        <!-- 下一篇 -->
-        <span class="next" v-if="curIndex < blogs.length">
+        <!-- 下一篇 ,索引值-->
+        <span class="next" v-if="curIndex < blogs.length-1">
           <a @click="nextPage(nextPageBlog.id)">{{ nextPageBlog.title }}</a>
           <i class="el-icon-right"></i>
         </span>
@@ -53,9 +53,9 @@ export default {
   data() {
     return {
       currentPageBlog: "",
-      // 上一篇
+      // 上一篇文章
       prevPageBlog: "",
-      // 下一篇
+      // 下一篇文章
       nextPageBlog: "",
       newId: this.$route.params.id,
       newViews: this.$route.params.views,
@@ -79,6 +79,8 @@ export default {
     getBlog() {
       this.$http("/api/blog").then(res => {
         this.blogs = res.data.data.datas;
+        this.len = this.blogs.length;
+        console.log(this.len);
         // const curIndex = Number(this.$route.query.index);
         // 如果当前页是1，则是数组的第0位
         // 只有索引值大于0，才有上一篇，索引值为0，就是最上一篇
@@ -86,29 +88,6 @@ export default {
         console.log(this.curIndex);
         this.prevPageBlog = this.blogs[this.curIndex - 1];
         this.nextPageBlog = this.blogs[this.curIndex + 1];
-
-        // // 如果是第一个
-        // if (this.curIndex == 0) {
-        //   // this.prevPageBlog = "";
-        //   this.nextPageBlog = this.blogs[this.curIndex + 1];
-        //   console.log(this.prevPageBlog);
-        //   console.log(this.nextPageBlog);
-        // } else {
-        //   this.prevPageBlog = this.blogs[this.curIndex - 1];
-        //   this.nextPageBlog = this.blogs[this.curIndex + 1];
-        // }
-        // // console.log(this.curIndex);
-        // // 如果是最后一个
-        // if (this.curIndex == this.blogs.length) {
-        //   this.prevPageBlog = this.blogs[this.curIndex - 1];
-        //   this.nextPageBlog = "";
-        // } else {
-        //   this.prevPageBlog = this.blogs[this.curIndex - 1];
-        //   this.nextPageBlog = this.blogs[this.curIndex + 1];
-        // }
-
-        // console.log(this.currentPageBlog);
-        // console.log(this.prevPageBlog);
       });
     },
     // 上一篇
@@ -129,7 +108,7 @@ export default {
     // 下一篇
     nextPage(id) {
       // console.log(this.curIndex);
-      if (this.curIndex == this.blogs.length) {
+      if (this.curIndex == this.blogs.length - 1) {
         return;
       } else {
         this.curIndex++;
