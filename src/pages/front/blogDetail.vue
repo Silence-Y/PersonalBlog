@@ -28,26 +28,16 @@
       <!-- 上一篇和下一篇 -->
       <div class="other">
         <!-- 上一篇 -->
-        <span>
+        <span class="prev" v-if="curIndex > 0">
           <i class="el-icon-back"></i>
-          <a class="prev" @click="prevPage(prevPageBlog.id)">{{ prevPageBlog.title }}</a>
+          <a @click="prevPage(prevPageBlog.id)">{{ prevPageBlog.title }}</a>
         </span>
-        <span>
-          <a class="next" @click="nextPage(nextPageBlog.id)">{{ nextPageBlog.title }}</a>
+        <!-- 下一篇 -->
+        <span class="next" v-if="curIndex < blogs.length">
+          <a @click="nextPage(nextPageBlog.id)">{{ nextPageBlog.title }}</a>
           <i class="el-icon-right"></i>
         </span>
       </div>
-      <!-- <hr />
-    
-    <div class="other">
-      <div
-        v-for="other in otherBlogList "
-        :key="other.id"
-        :class="other.type"
-        :title="other.title"
-        @click="handleClick(other.id)"
-      >{{other.title}}</div>
-      </div>-->
     </div>
     <!-- 评论 -->
     <Comment></Comment>
@@ -94,27 +84,28 @@ export default {
         // 只有索引值大于0，才有上一篇，索引值为0，就是最上一篇
         this.currentPageBlog = this.blogs[this.curIndex];
         console.log(this.curIndex);
-        // 如果是第一个
-        if (this.curIndex == 0) {
-          console.log("fsf");
-          this.prevPageBlog = "";
+        this.prevPageBlog = this.blogs[this.curIndex - 1];
+        this.nextPageBlog = this.blogs[this.curIndex + 1];
 
-          this.nextPageBlog = this.blogs[this.curIndex + 1];
-          console.log(this.prevPageBlog);
-          console.log(this.nextPageBlog);
-        } else {
-          this.prevPageBlog = this.blogs[this.curIndex - 1];
-          this.nextPageBlog = this.blogs[this.curIndex + 1];
-        }
-        // console.log(this.curIndex);
-        // 如果是最后一个
-        if (this.curIndex == this.blogs.length) {
-          this.prevPageBlog = this.blogs[this.curIndex - 1];
-          this.nextPageBlog = "";
-        } else {
-          this.prevPageBlog = this.blogs[this.curIndex - 1];
-          this.nextPageBlog = this.blogs[this.curIndex + 1];
-        }
+        // // 如果是第一个
+        // if (this.curIndex == 0) {
+        //   // this.prevPageBlog = "";
+        //   this.nextPageBlog = this.blogs[this.curIndex + 1];
+        //   console.log(this.prevPageBlog);
+        //   console.log(this.nextPageBlog);
+        // } else {
+        //   this.prevPageBlog = this.blogs[this.curIndex - 1];
+        //   this.nextPageBlog = this.blogs[this.curIndex + 1];
+        // }
+        // // console.log(this.curIndex);
+        // // 如果是最后一个
+        // if (this.curIndex == this.blogs.length) {
+        //   this.prevPageBlog = this.blogs[this.curIndex - 1];
+        //   this.nextPageBlog = "";
+        // } else {
+        //   this.prevPageBlog = this.blogs[this.curIndex - 1];
+        //   this.nextPageBlog = this.blogs[this.curIndex + 1];
+        // }
 
         // console.log(this.currentPageBlog);
         // console.log(this.prevPageBlog);

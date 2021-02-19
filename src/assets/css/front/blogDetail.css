@@ -56,6 +56,18 @@
   padding: 40px 0;
 }
 
+/* .other .prev {
+  display: inline-block;
+  width: 50%;
+}
+
+.other .next {
+  display: inline-block;
+  width: 50%;
+  right: 10px;
+  margin-left: 335px;
+} */
+
 .other a {
   text-decoration: none;
   color: #009688;
