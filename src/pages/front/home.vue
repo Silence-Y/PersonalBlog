@@ -6,8 +6,8 @@
         <!-- 标题 -->
         <router-link
           :to="{
-            path: 'blogDetail',
-            query: { id: item.id, views: item.views }
+            name: 'blogDetail',
+            params: { id: item.id, views: item.views,index:index }
           }"
           tag="h2"
         >{{ item.title }}</router-link>

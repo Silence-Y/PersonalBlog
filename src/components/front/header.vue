@@ -29,9 +29,9 @@
       </el-menu>
     </div>-->
     <!-- 隐藏是右侧显示 -->
-    <div class="drawer">
-      <!-- <el-button class="btn" v-model="isCollapse" @click="handle">点击</el-button> -->
-      <!-- <i class="el-icon-s-fold"></i> -->
+    <!-- <div class="drawer">
+      <el-button class="btn" v-model="isCollapse" @click="handle">点击</el-button>
+      <i class="el-icon-s-fold"></i>
       <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
         <el-radio-button :label="false">展开</el-radio-button>
         <el-radio-button :label="true">收起</el-radio-button>
@@ -50,7 +50,8 @@
         <el-menu-item index="/about">关于</el-menu-item>
         <el-menu-item index="/message">留言</el-menu-item>
       </el-menu>
-    </div>
+    </div>-->
+
     <!-- 图片 banner -->
     <section id="banner">
       <a href>

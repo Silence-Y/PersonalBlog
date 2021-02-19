@@ -39,6 +39,32 @@
   z-index: 1;
 }
 
+/* 上一篇和下一篇 */
+.line {
+  border-top: 1px dotted #000;
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.other {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 90%;
+  height: 100%;
+  padding: 40px 0;
+}
+
+.other a {
+  text-decoration: none;
+  color: #009688;
+}
+
+.other a:hover {
+  cursor: pointer;
+}
+
 @media(max-width:768px) {
   #blogDetail h1 {
     font-size: 28px;

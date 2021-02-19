@@ -57,7 +57,7 @@ export default new Router({
           }
         },
         {
-          path: '/blogDetail',
+          path: '/blogDetail/:id',
           name: 'blogDetail',
           component: blogDetail,
           meta: {

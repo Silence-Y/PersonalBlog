@@ -4,18 +4,21 @@
       <!-- 详情页内容 -->
       <div class="bd_content">
         <!-- 标题 -->
-        <h1>{{ blog.title }}</h1>
+        <h1>{{ currentPageBlog.title }}</h1>
         <!-- 作者 -->
         <h5>
           <i class="el-icon-user-solid"></i>
           Silence.Y
           <i class="el-icon-date"></i>
-          {{ blog.ctime }}
+          {{ currentPageBlog.ctime }}
           <i class="el-icon-view"></i>
-          {{ blog.views }}人阅读
+          {{ currentPageBlog.views }}人阅读
         </h5>
         <!-- <div class="text_mavonEditor"> -->
-        <mavon-editor v-html="blog.html_content" style="box-shadow:rgba(0, 0, 0)">{{ blog.content }}</mavon-editor>
+        <mavon-editor
+          v-html="currentPageBlog.html_content"
+          style="box-shadow:rgba(0, 0, 0)"
+        >{{ currentPageBlog.content }}</mavon-editor>
         <!-- </div> -->
       </div>
 
@@ -24,8 +27,15 @@
       <div class="line"></div>
       <!-- 上一篇和下一篇 -->
       <div class="other">
-        <div class="prev">上一篇</div>
-        <div class="next">下一篇</div>
+        <!-- 上一篇 -->
+        <span>
+          <i class="el-icon-back"></i>
+          <a class="prev" @click="prevPage(prevPageBlog.id)">{{ prevPageBlog.title }}</a>
+        </span>
+        <span>
+          <a class="next" @click="nextPage(nextPageBlog.id)">{{ nextPageBlog.title }}</a>
+          <i class="el-icon-right"></i>
+        </span>
       </div>
       <!-- <hr />
     
@@ -52,9 +62,15 @@ import Comment from "../../components/front/comment";
 export default {
   data() {
     return {
-      blog: "",
-      newId: this.$route.query.id,
-      newViews: this.$route.query.views,
+      currentPageBlog: "",
+      // 上一篇
+      prevPageBlog: "",
+      // 下一篇
+      nextPageBlog: "",
+      newId: this.$route.params.id,
+      newViews: this.$route.params.views,
+      curIndex: Number(this.$route.params.index),
+      pageSize: 1, // 每页显示数量
       blogs: [],
       index: ""
     };
@@ -66,84 +82,100 @@ export default {
   },
   created() {
     this.getBlog();
-    // this.getBlogs();
-    this.previous();
+    // this.getCurrentPageDate();
   },
   methods: {
-    // 查询上一篇和下一篇
-    // 调取外面列表的接口，将传过来的值给接口利用filter来获取id
-    // handleClick(id) {
-    //   this.$router.push({
-    //     name: "blogDetail",
-    //     params: {
-    //       id
-    //     }
-    //   });
-    // },
-    // 获取博客列表
-    // getBlogs() {
-    //   // this.loading = true;
-
-    //   this.$http("/api/blog").then(res => {
-    //     const self = this;
-    //     // 博客列表
-    //     this.blogs = res.data.data.datas;
-    //     console.log(this.blogs);
-    //     // 过滤出当前博客信息的id值，获取当前博客信息的索引
-    //     // value是单个博客的信息
-    //     const filterData = this.blogs.filter(function(v, i) {
-    //       // 如果是当前博客，就让它的索引为i,v是
-    //       if (v.id == self.$route.query.id) {
-    //         // const index = i;
-    //         self.index = i;
-    //         return v;
-    //         // return { v, index };
-    //       }
-    //       // 这个就是当前博客的信息
-    //       // this.data=filterData[0]
-    //     });
-    //     // return this.index;
-    //     // console.log(this);
-    //     // console.log(this.index); //1
-    //   });
-    //   console.log(this);
-    //   console.log(this.index);
-    // },
-
-    previous() {
-      // console.log(this);
-      // console.log(this.index);
-      // if (this.index > 0) {
-      //   this.index -= 1;
-      //   this.blog = this.blogs[this.index];
-      //   // console.log(this.blog);
-      // }
-      this.$http.get("/api/blog/getPrevBlog" + this.newId).then(res => {
-        console.log(res);
-      });
-    },
-
-    // next() {},
-    //  根据id查询
+    // 获取当前页
     getBlog() {
-      this.loading = true;
-      // console.log(typeof Number(this.newViews));
-      // this.$http.get("/api/blog/`${this.newId}`").then(res => {
-      this.$http.get("/api/blog/" + this.newId).then(res => {
-        // console.log(res.data.data);
-        this.blog = res.data.data;
-        // 阅读量自增
-        this.blog.views = res.data.data.views + 1;
-        this.submit();
+      this.$http("/api/blog").then(res => {
+        this.blogs = res.data.data.datas;
+        // const curIndex = Number(this.$route.query.index);
+        // 如果当前页是1，则是数组的第0位
+        // 只有索引值大于0，才有上一篇，索引值为0，就是最上一篇
+        this.currentPageBlog = this.blogs[this.curIndex];
+        console.log(this.curIndex);
+        // 如果是第一个
+        if (this.curIndex == 0) {
+          console.log("fsf");
+          this.prevPageBlog = "";
+
+          this.nextPageBlog = this.blogs[this.curIndex + 1];
+          console.log(this.prevPageBlog);
+          console.log(this.nextPageBlog);
+        } else {
+          this.prevPageBlog = this.blogs[this.curIndex - 1];
+          this.nextPageBlog = this.blogs[this.curIndex + 1];
+        }
+        // console.log(this.curIndex);
+        // 如果是最后一个
+        if (this.curIndex == this.blogs.length) {
+          this.prevPageBlog = this.blogs[this.curIndex - 1];
+          this.nextPageBlog = "";
+        } else {
+          this.prevPageBlog = this.blogs[this.curIndex - 1];
+          this.nextPageBlog = this.blogs[this.curIndex + 1];
+        }
+
+        // console.log(this.currentPageBlog);
+        // console.log(this.prevPageBlog);
       });
     },
+    // 上一篇
+    prevPage(id) {
+      if (this.curIndex == 0) {
+        return;
+      } else {
+        this.curIndex--;
+        this.$router.push({
+          name: "blogDetail",
+          params: {
+            id: id
+          }
+        });
+        this.getBlog();
+      }
+    },
+    // 下一篇
+    nextPage(id) {
+      // console.log(this.curIndex);
+      if (this.curIndex == this.blogs.length) {
+        return;
+      } else {
+        this.curIndex++;
+        // console.log(this.curIndex);
+        this.$router.push({
+          name: "blogDetail",
+          params: {
+            id: id
+          }
+        });
+        this.getBlog();
+      }
+    },
+
+    //  根据id查询
+    // getBlog() {
+    //   this.loading = true;
+    //   // console.log(this.newId);
+    //   // console.log(typeof Number(this.newViews));
+    //   // this.$http.get("/api/blog/`${this.newId}`").then(res => {
+    //   this.$http.get("/api/blog/" + this.newId).then(res => {
+    //     // console.log(res.data.data);
+    //     this.currentPageBlog = res.data.data;
+    //     // 阅读量自增
+    //     this.currentPageBlog.views = res.data.data.views + 1;
+    //     this.submit();
+    //   });
+    // },
     // 增加阅读量
     submit() {
-      this.blog.views = Number(this.newViews) + 1;
+      this.currentPageBlog.views = Number(this.newViews) + 1;
       // console.log(this.blog.views);
-      this.$http.put("/api/blog/" + this.newId, this.blog).then(res => {
-        // console.log(res.data.data.views);
-      });
+      this.$http
+        .put("/api/blog/" + this.newId, this.currentPageBlog)
+        .then(res => {
+          // console.log(res.data.data.views);
+        });
     }
   }
 };
@@ -152,18 +184,4 @@ export default {
 
 <style scoped>
 @import "../../assets/css/front/blogDetail.css";
-.line {
-  border-top: 1px dotted #000;
-  width: 95%;
-  height: 100%;
-  margin: 0 auto;
-}
-.other {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  width: 80%;
-  height: 100%;
-  padding: 40px 0;
-}
 </style>
