@@ -30,6 +30,15 @@
   font-weight: 600;
 }
 
+.el-menu--horizontal>.el-menu-item {
+  font-size: 16px;
+}
+
+/* .el-menu--horizontal>.el-menu-item.is-active {
+  border-bottom: 2px solid #009688;
+  color: #303133;
+} */
+
 /* 移动端导航 */
 #bars {
   display: flex;
@@ -50,13 +59,33 @@
 .dropdown {
   position: absolute;
   width: 100%;
+  height: 240px;
   background: #fff;
   z-index: 999;
 }
 
+/* .dropdown .dropdown-ul {
+  height: 100%;
+  padding: 20px 0;
+}
+
+.dropdown .dropdown-li {
+  width: 60%;
+  height: 18%;
+  margin-left: 50px;
+  font-size: 14px;
+} 
+.dropdown .dropdown-li:hover {
+  cursor: pointer;
+}*/
+
 .dropdown .el-menu-item {
   width: 60%;
   margin-left: 50px;
+}
+
+.el-menu-item.is-active {
+  color: #009688;
 }
 
 .dropdown-fade-show-enter-active {

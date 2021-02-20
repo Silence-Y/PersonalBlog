@@ -72,7 +72,7 @@ export default {
   },
   created() {
     this.getBlog();
-    // this.getCurrentPageDate();
+    this.getViews();
   },
   methods: {
     // 获取当前页
@@ -80,12 +80,12 @@ export default {
       this.$http("/api/blog").then(res => {
         this.blogs = res.data.data.datas;
         this.len = this.blogs.length;
-        console.log(this.len);
+        // console.log(this.len);
         // const curIndex = Number(this.$route.query.index);
         // 如果当前页是1，则是数组的第0位
         // 只有索引值大于0，才有上一篇，索引值为0，就是最上一篇
         this.currentPageBlog = this.blogs[this.curIndex];
-        console.log(this.curIndex);
+        // console.log(this.curIndex);
         this.prevPageBlog = this.blogs[this.curIndex - 1];
         this.nextPageBlog = this.blogs[this.curIndex + 1];
       });
@@ -124,19 +124,19 @@ export default {
     },
 
     //  根据id查询
-    // getBlog() {
-    //   this.loading = true;
-    //   // console.log(this.newId);
-    //   // console.log(typeof Number(this.newViews));
-    //   // this.$http.get("/api/blog/`${this.newId}`").then(res => {
-    //   this.$http.get("/api/blog/" + this.newId).then(res => {
-    //     // console.log(res.data.data);
-    //     this.currentPageBlog = res.data.data;
-    //     // 阅读量自增
-    //     this.currentPageBlog.views = res.data.data.views + 1;
-    //     this.submit();
-    //   });
-    // },
+    getViews() {
+      this.loading = true;
+      // console.log(this.newId);
+      // console.log(typeof Number(this.newViews));
+      // this.$http.get("/api/blog/`${this.newId}`").then(res => {
+      this.$http.get("/api/blog/" + this.newId).then(res => {
+        // console.log(res.data.data);
+        this.currentPageBlog = res.data.data;
+        // 阅读量自增
+        this.currentPageBlog.views = res.data.data.views + 1;
+        this.submit();
+      });
+    },
     // 增加阅读量
     submit() {
       this.currentPageBlog.views = Number(this.newViews) + 1;

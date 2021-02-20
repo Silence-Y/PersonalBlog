@@ -32,12 +32,20 @@
     <!-- 下拉菜单 -->
     <transition name="dropdown-fade-show">
       <div v-show="dropDownShow" class="dropdown">
+        <!-- <ul class="dropdown-ul">
+          <li
+            class="dropdown-li"
+            v-for="(item,index) in menuList"
+            :key="index"
+            @click="toActiveMenuItem(item)"
+          >{{ item.titleName }}</li>
+        </ul>-->
         <el-menu class="menu-nav" :default-active="currentPath" router>
-          <el-menu-item index="/home">首页</el-menu-item>
-          <el-menu-item index="/map">技术博客</el-menu-item>
-          <el-menu-item index="#">随笔</el-menu-item>
-          <el-menu-item index="/about">关于</el-menu-item>
-          <el-menu-item index="/message">留言</el-menu-item>
+          <el-menu-item index="/home" @click="toActiveMenuItem()">首页</el-menu-item>
+          <el-menu-item index="/map" @click="toActiveMenuItem()">技术博客</el-menu-item>
+          <el-menu-item index="#" @click="toActiveMenuItem()">随笔</el-menu-item>
+          <el-menu-item index="/about" @click="toActiveMenuItem()">关于</el-menu-item>
+          <el-menu-item index="/message" @click="toActiveMenuItem()">留言</el-menu-item>
         </el-menu>
       </div>
     </transition>
@@ -60,6 +68,13 @@
 export default {
   data() {
     return {
+      // menuList: [
+      //   { activeName: "home", titleName: "首页", activeUrl: "/home" },
+      //   { activeName: "map", titleName: "技术博客", activeUrl: "/map" },
+      //   { activeName: "map", titleName: "随笔", activeUrl: "/map" },
+      //   { activeName: "about", titleName: "关于", activeUrl: "/about" },
+      //   { activeName: "message", titleName: "留言", activeUrl: "/message" }
+      // ],
       currentPath: location.pathname,
       // 所有每日一句页面
       everyDay: "",
@@ -72,12 +87,15 @@ export default {
     this.getEveryDay();
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    toActiveMenuItem() {
+      this.dropDownShow = false;
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
+    // toActiveMenuItem(item) {
+    //   this.activeName = item.titleName;
+    //   this.$router.push(item.activeUrl);
+    //   this.dropDownShow = false;
+    // },
+
     // 获取每日一句
     getEveryDay() {
       this.$http.get("/api/everyDay/getLastEveryDay").then(res => {

@@ -132,7 +132,7 @@
 
 #recent_blog li {
   list-style: none;
-  width: 180px;
+  width: 65%;
   margin: 0px auto;
   border-bottom: 1px solid #ddd;
   padding: 10px 20px 10px 10px;
