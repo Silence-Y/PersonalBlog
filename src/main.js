@@ -15,7 +15,7 @@ Vue.use(ElementUI)
 Vue.prototype.$http = axios
 
 
-
+// 路由跳转后定位
 router.beforeEach((to, from, next) => {
   // chrome
   document.body.scrollTop = 0

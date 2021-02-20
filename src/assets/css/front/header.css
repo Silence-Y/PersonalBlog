@@ -25,30 +25,62 @@
   align-items: center;
 }
 
+.nav-content .nav-fold span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 /* 移动端导航 */
-/* .drawer {
+#bars {
+  display: flex;
+  align-items: center;
+}
+
+#bars .icon-bar {
+  background-color: #333;
+  margin: 5px 0;
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+/* 下拉菜单 */
+
+.dropdown {
   position: absolute;
-  top: 0;
-  right: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 999;
 }
 
-.drawer .btn {
-  height: 60px;
+.dropdown .el-menu-item {
+  width: 60%;
+  margin-left: 50px;
 }
 
-.drawer .fold {
-  width: 120px;
-  z-index: 100;
-} */
+.dropdown-fade-show-enter-active {
+  animation: fadeShow 0.25s;
+}
 
-/* .nav {
-  width: 120px;
-  float: right;
-} */
+.dropdown-fade-show-leave-to {
+  animation: fadeShow 0.25s reverse;
+}
 
-/* .menu-nav {
-  width: 120px;
-} */
+@keyframes fadeShow {
+  0% {
+    transform-origin: 0 top;
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform-origin: 0 top;
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
 
 
 
@@ -63,13 +95,19 @@
 }
 
 
-/* 下拉菜单出现 */
-
 
 /* 调整头部信息 */
-@media (max-width: 1199px) and (min-width: 769px) {
+@media screen and (min-width: 769px) {
   #banner {
     margin-bottom: 2em;
+  }
+
+  #bars {
+    display: none;
+  }
+
+  .dropdown {
+    display: none;
   }
 }
 
@@ -78,12 +116,12 @@
     display: block;
   }
 
-  .nav-content .menu-nav {
-    display: none;
+  .nav-content .nav-fold span {
+    font-size: 16px;
   }
 
-  .header-content span {
-    font-size: 14px;
+  .nav-content .menu-nav {
+    display: none;
   }
 
   .header-content ul {

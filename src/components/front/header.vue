@@ -17,13 +17,22 @@
           <el-menu-item index="/about">关于</el-menu-item>
           <el-menu-item index="/message">留言</el-menu-item>
         </el-menu>
+
+        <!-- 右侧按钮 -->
+        <div id="bars" @click="dropDownShow = !dropDownShow">
+          <div>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </div>
+        </div>
       </div>
     </header>
 
     <!-- 下拉菜单 -->
     <transition name="dropdown-fade-show">
       <div v-show="dropDownShow" class="dropdown">
-        <el-menu class="menu-nav" :default-active="currentPath" :collapse="isCollapse" router>
+        <el-menu class="menu-nav" :default-active="currentPath" router>
           <el-menu-item index="/home">首页</el-menu-item>
           <el-menu-item index="/map">技术博客</el-menu-item>
           <el-menu-item index="#">随笔</el-menu-item>
@@ -32,38 +41,6 @@
         </el-menu>
       </div>
     </transition>
-    <!-- <div class="nav">
-      <el-menu class="menu-nav" :default-active="currentPath" :collapse="isCollapse" router>
-        <el-menu-item index="/home">首页</el-menu-item>
-        <el-menu-item index="/map">技术博客</el-menu-item>
-        <el-menu-item index="#">随笔</el-menu-item>
-        <el-menu-item index="/about">关于</el-menu-item>
-        <el-menu-item index="/message">留言</el-menu-item>
-      </el-menu>
-    </div>-->
-    <!-- 隐藏是右侧显示 -->
-    <!-- <div class="drawer">
-      <el-button class="btn" v-model="isCollapse" @click="handle">点击</el-button>
-      <i class="el-icon-s-fold"></i>
-      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
-      </el-radio-group>
-      <el-menu
-        class="el-menu-vertical-demo fold"
-        :default-active="currentPath"
-        @open="handleOpen"
-        @close="handleClose"
-        :collapse="isCollapse"
-        router
-      >
-        <el-menu-item index="/home">首页</el-menu-item>
-        <el-menu-item index="/map">技术博客</el-menu-item>
-        <el-menu-item index="#">随笔</el-menu-item>
-        <el-menu-item index="/about">关于</el-menu-item>
-        <el-menu-item index="/message">留言</el-menu-item>
-      </el-menu>
-    </div>-->
 
     <!-- 图片 banner -->
     <section id="banner">
