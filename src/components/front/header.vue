@@ -10,10 +10,15 @@
         </div>
 
         <!-- 右侧 -->
-        <el-menu class="menu-nav" :default-active="currentPath" mode="horizontal" router>
+        <el-menu
+          class="menu-nav"
+          :default-active="currentPath"
+          mode="horizontal"
+          router
+        >
           <el-menu-item index="/home">首页</el-menu-item>
-          <el-menu-item index="/map">技术博客</el-menu-item>
-          <el-menu-item index="#">随笔</el-menu-item>
+          <el-menu-item index="/map">博客</el-menu-item>
+          <!-- <el-menu-item index="#">随笔</el-menu-item> -->
           <el-menu-item index="/about">关于</el-menu-item>
           <el-menu-item index="/message">留言</el-menu-item>
         </el-menu>
@@ -41,11 +46,21 @@
           >{{ item.titleName }}</li>
         </ul>-->
         <el-menu class="menu-nav" :default-active="currentPath" router>
-          <el-menu-item index="/home" @click="toActiveMenuItem()">首页</el-menu-item>
-          <el-menu-item index="/map" @click="toActiveMenuItem()">技术博客</el-menu-item>
-          <el-menu-item index="#" @click="toActiveMenuItem()">随笔</el-menu-item>
-          <el-menu-item index="/about" @click="toActiveMenuItem()">关于</el-menu-item>
-          <el-menu-item index="/message" @click="toActiveMenuItem()">留言</el-menu-item>
+          <el-menu-item index="/home" @click="toActiveMenuItem()"
+            >首页</el-menu-item
+          >
+          <el-menu-item index="/map" @click="toActiveMenuItem()"
+            >博客</el-menu-item
+          >
+          <!-- <el-menu-item index="#" @click="toActiveMenuItem()"
+            >随笔</el-menu-item
+          > -->
+          <el-menu-item index="/about" @click="toActiveMenuItem()"
+            >关于</el-menu-item
+          >
+          <el-menu-item index="/message" @click="toActiveMenuItem()"
+            >留言</el-menu-item
+          >
         </el-menu>
       </div>
     </transition>

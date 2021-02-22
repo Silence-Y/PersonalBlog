@@ -6,7 +6,6 @@ body,
   height: 100%;
 }
 
-
 .wrapper {
   overflow-y: scroll;
 }
@@ -25,12 +24,10 @@ body,
 
 }
 
-
 .content .el-row .el-col {
   height: 100%;
 }
 
-/*  */
 @media (max-width: 1919px) and (min-width: 1600px) {
   .content {
     width: 75%;
@@ -60,10 +57,6 @@ body,
 /* .content::-webkit-scrollbar {
   width: 0 !important
 } */
-
-
-
-
 
 /* footer {
   display: block;

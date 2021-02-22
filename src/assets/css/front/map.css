@@ -47,8 +47,9 @@
   color: #009688;
 }
 
+
+/* 目录 */
 #map .catalogue {
-  /* padding-bottom: 20px; */
   position: relative;
   margin: 0px auto 40px auto;
   width: 90%;
@@ -66,8 +67,6 @@
   width: 70px;
   display: block;
   height: 4px;
-  /* left: 0; */
-  /* margin-left: -75px; */
   top: 70px;
   background-color: #009688;
   content: "";
@@ -78,11 +77,9 @@
 #map .catalogue ul {
   width: 100%;
   padding: 5px 0 30px 0;
-
 }
 
 #map .catalogue li {
-  height: 30px;
   line-height: 30px;
   font-size: 16px;
   list-style-type: none;

@@ -1,6 +1,6 @@
 #about {
   width: 100%;
-  height: 400px;
+  height: 300px;
   background: white;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
   margin-bottom: 40px;
@@ -33,15 +33,14 @@
   word-break: break-all;
 }
 
-#about .ab_content a {
-  display: block;
-  padding: 0px 20px 20px 20px;
-  color: #607D8B;
-  text-decoration: none;
+#about .ab_content .con_out {
+  padding: 0px 20px 10px 20px;
 }
 
-#about .ab_content a:hover {
-  color: #337ab7;
+#about .ab_content a {
+  font-weight: 500;
+  color: #009688;
+  text-decoration: none;
 }
 
 @media(max-width:768px) {

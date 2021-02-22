@@ -18,7 +18,8 @@
         <mavon-editor
           v-html="currentPageBlog.html_content"
           style="box-shadow:rgba(0, 0, 0)"
-        >{{ currentPageBlog.content }}</mavon-editor>
+          >{{ currentPageBlog.content }}</mavon-editor
+        >
         <!-- </div> -->
       </div>
 
@@ -33,7 +34,7 @@
           <a @click="prevPage(prevPageBlog.id)">{{ prevPageBlog.title }}</a>
         </span>
         <!-- 下一篇 ,索引值-->
-        <span class="next" v-if="curIndex < blogs.length-1">
+        <span class="next" v-if="curIndex < blogs.length - 1">
           <a @click="nextPage(nextPageBlog.id)">{{ nextPageBlog.title }}</a>
           <i class="el-icon-right"></i>
         </span>
@@ -103,6 +104,7 @@ export default {
           }
         });
         this.getBlog();
+        // this.getViews();
       }
     },
     // 下一篇
@@ -120,6 +122,7 @@ export default {
           }
         });
         this.getBlog();
+        // this.getViews();
       }
     },
 
