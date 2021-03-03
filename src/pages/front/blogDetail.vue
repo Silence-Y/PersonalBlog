@@ -17,7 +17,7 @@
         <!-- <div class="text_mavonEditor"> -->
         <mavon-editor
           v-html="currentPageBlog.html_content"
-          style="box-shadow:rgba(0, 0, 0)"
+          style="box-shadow: rgba(0, 0, 0)"
           >{{ currentPageBlog.content }}</mavon-editor
         >
         <!-- </div> -->
@@ -28,7 +28,7 @@
       <div class="line"></div>
       <!-- 上一篇和下一篇 -->
       <div class="other">
-        <!-- 上一篇 -->
+        <!-- 上一篇，如果索引值》0，就显示上一篇 -->
         <span class="prev" v-if="curIndex > 0">
           <i class="el-icon-back"></i>
           <a @click="prevPage(prevPageBlog.id)">{{ prevPageBlog.title }}</a>
@@ -63,13 +63,13 @@ export default {
       curIndex: Number(this.$route.params.index),
       pageSize: 1, // 每页显示数量
       blogs: [],
-      index: ""
+      index: "",
     };
   },
   components: {
     Right,
     Comment,
-    mavonEditor
+    mavonEditor,
   },
   created() {
     this.getBlog();
@@ -78,7 +78,7 @@ export default {
   methods: {
     // 获取当前页
     getBlog() {
-      this.$http("/api/blog").then(res => {
+      this.$http("/api/blog").then((res) => {
         this.blogs = res.data.data.datas;
         this.len = this.blogs.length;
         // console.log(this.len);
@@ -86,9 +86,11 @@ export default {
         // 如果当前页是1，则是数组的第0位
         // 只有索引值大于0，才有上一篇，索引值为0，就是最上一篇
         this.currentPageBlog = this.blogs[this.curIndex];
-        // console.log(this.curIndex);
         this.prevPageBlog = this.blogs[this.curIndex - 1];
+        console.log(this.prevPageBlog);
+        // console.log(this.curIndex);
         this.nextPageBlog = this.blogs[this.curIndex + 1];
+        console.log(this.nextPageBlog);
       });
     },
     // 上一篇
@@ -100,8 +102,8 @@ export default {
         this.$router.push({
           name: "blogDetail",
           params: {
-            id: id
-          }
+            id: id,
+          },
         });
         this.getBlog();
         // this.getViews();
@@ -118,8 +120,8 @@ export default {
         this.$router.push({
           name: "blogDetail",
           params: {
-            id: id
-          }
+            id: id,
+          },
         });
         this.getBlog();
         // this.getViews();
@@ -132,7 +134,7 @@ export default {
       // console.log(this.newId);
       // console.log(typeof Number(this.newViews));
       // this.$http.get("/api/blog/`${this.newId}`").then(res => {
-      this.$http.get("/api/blog/" + this.newId).then(res => {
+      this.$http.get("/api/blog/" + this.newId).then((res) => {
         // console.log(res.data.data);
         this.currentPageBlog = res.data.data;
         // 阅读量自增
@@ -146,11 +148,11 @@ export default {
       // console.log(this.blog.views);
       this.$http
         .put("/api/blog/" + this.newId, this.currentPageBlog)
-        .then(res => {
+        .then((res) => {
           // console.log(res.data.data.views);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

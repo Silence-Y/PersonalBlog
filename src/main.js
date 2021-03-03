@@ -16,15 +16,18 @@ Vue.prototype.$http = axios
 
 
 // 路由跳转后定位
-router.beforeEach((to, from, next) => {
-  // chrome
-  document.body.scrollTop = 0
-  // firefox
-  document.documentElement.scrollTop = 0
-  // safari
-  window.pageYOffset = 0
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   // chrome
+//   document.body.scrollTop = 0
+//   // firefox
+//   document.documentElement.scrollTop = 0
+//   // safari
+//   window.pageYOffset = 0
+//   next()
+// })
+// router.afterEach((to,from,next) => {
+//   window.scrollTo(0,0);
+// })
 
 /* eslint-disable no-new */
 new Vue({

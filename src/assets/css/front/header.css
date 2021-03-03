@@ -63,6 +63,7 @@
   height: 240px;
   background: #fff;
   z-index: 999;
+  position: fixed;
 }
 
 /* .dropdown .dropdown-ul {
