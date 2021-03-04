@@ -12,7 +12,8 @@ router.get("/",
     const page = req.query.page || 1;
     const limit = req.query.limit || 10;
     const title = req.query.title || ""
-    return await blogServ.getBlogs(page, limit, title)
+    const tag = req.query.tag || ""
+    return await blogServ.getBlogs(page, limit, title,tag)
   }))
 
 

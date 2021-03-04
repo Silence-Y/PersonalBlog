@@ -4,14 +4,13 @@ const {
 } = require('sequelize');
 
 const Tag = sequelize.define('Tag', {
-  tag: {
+  t_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
 }, {
   createdAt: false,
   updatedAt: false,
-
 })
 
 module.exports = Tag;

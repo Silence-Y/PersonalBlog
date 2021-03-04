@@ -23,6 +23,10 @@ const Blog = sequelize.define('Blog', {
     type: DataTypes.INTEGER,
     allowNull: true
   },
+  tag:{
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   ctime: {
     type: DataTypes.DATE,
     get() {

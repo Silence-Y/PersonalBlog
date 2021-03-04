@@ -20,6 +20,7 @@ app.use(express.json());
 app.use("/api/blog", require("./api/blog"));
 app.use("/api/everyDay", require("./api/everyDay"));
 app.use("/api/comment", require("./api/comment"));
+app.use("/api/tag", require("./api/tag"));
 
 const port = 12306;
 app.listen(port, () => {

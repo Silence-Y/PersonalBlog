@@ -1,5 +1,15 @@
 const Tag = require('../models/Tag')
 
+
+// 查询标签
+exports.getTags = async function(){
+  const result =await Tag.findAndCountAll()
+
+  return {
+    total: result.count,
+    datas: JSON.parse(JSON.stringify(result.rows)),
+  }
+}
 // 新增
 exports.addTag = async function (tagObj) {
   const ins = await Tag.create(tagObj);

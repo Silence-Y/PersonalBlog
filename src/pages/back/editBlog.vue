@@ -12,9 +12,16 @@
         <el-form-item label="标题" prop="title" label-width="50px">
           <el-input v-model="blog.title" autocomplete="off"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="标签" label-width="50px">
-          <el-input v-model="blog.author" autocomplete="off"></el-input>
-        </el-form-item>-->
+        <el-form-item label="标签">
+          <el-select v-model="blog.tag" placeholder="请选择标签">
+            <el-option
+              v-for="tag in tagList"
+              :key="tag.id"
+              :value="tag.t_name"
+              >{{ tag.t_name }}</el-option
+            >
+          </el-select>
+        </el-form-item>
 
         <el-form-item>
           <mavon-editor
@@ -30,7 +37,9 @@
           <!-- <span class="wordNumber">{{ TiLength }}/10000</span> -->
         </el-form-item>
       </el-form>
-      <el-button class="editor-btn" type="primary" @click="submit">提交</el-button>
+      <el-button class="editor-btn" type="primary" @click="submit"
+        >提交</el-button
+      >
     </div>
   </div>
 </template>
@@ -44,7 +53,7 @@ import moment from "moment";
 
 export default {
   name: "editBlog",
-  data: function() {
+  data: function () {
     return {
       // 新增或者编辑
       blog: {
@@ -54,23 +63,33 @@ export default {
         html_content: "",
         views: "",
         tag: "",
-        ctime: ""
+        ctime: "",
       },
+      // 标签选择
+      tagList: [],
       // 及时转的html
       // html: "",
       editorOption: {
-        placeholder: "Hello World"
+        placeholder: "Hello World",
       },
-      TiLength: 0
+      TiLength: 0,
     };
   },
   components: {
-    mavonEditor
+    mavonEditor,
   },
   created() {
     this.getBlog();
+    this.getTag();
   },
   methods: {
+    // 获取标签
+    getTag() {
+      this.$http.get("/api/tag").then((res) => {
+        // console.log(res.data.data.datas);
+        this.tagList = res.data.data.datas;
+      });
+    },
     getBlog() {
       // 数据回显
       // console.log(this.$route.query.row);
@@ -89,8 +108,8 @@ export default {
         url: "server url", //图片上传接口路径
         method: "post",
         data: formdata,
-        headers: { "Content-Type": "multipart/form-data" }
-      }).then(url => {
+        headers: { "Content-Type": "multipart/form-data" },
+      }).then((url) => {
         // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
         // 图片回显到编辑器添加图片的位置
         $vm.$img2Url(pos, url);
@@ -110,13 +129,13 @@ export default {
       // 将提交的内容显示正常
       // console.log(this.html);
       // this.blog.content = this.html;
-      console.log(this.blog.html_content);
-      console.log(this.blog.md_content);
+      // console.log(this.blog.html_content);
+      // console.log(this.blog.md_content);
       // 如果id存在就编辑
       if (id) {
         this.blog.id = this.$route.query.id;
         this.blog.ctime = this.$route.query.newCtime;
-        this.$http.put("/api/blog" + `/${id}`, this.blog).then(res => {
+        this.$http.put("/api/blog" + `/${id}`, this.blog).then((res) => {
           // 编辑成功后跳转页面
           this.$router.push({ name: "posts" });
         });
@@ -124,8 +143,9 @@ export default {
         this.blog.ctime = moment().format("YYYY-MM-DD HH:mm:ss");
         // console.log(this.blog.ctime);
         this.blog.views = 0;
+        console.log(this.blog.tag);
         // 如果不存在，就新增
-        this.$http.post("/api/blog", this.blog).then(res => {
+        this.$http.post("/api/blog", this.blog).then((res) => {
           // console.log(res);
           // 新增成功后跳转页面
           this.$router.push({ name: "posts" });
@@ -133,10 +153,10 @@ export default {
       }
       this.$message({
         type: "success",
-        message: id ? "修改成功" : "新增成功"
+        message: id ? "修改成功" : "新增成功",
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

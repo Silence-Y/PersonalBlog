@@ -11,15 +11,42 @@
     <!-- 表格内容 -->
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" icon="el-icon-delete" class="handle-del mr10" size="small">批量删除</el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-delete"
+          class="handle-del mr10"
+          size="small"
+          >批量删除</el-button
+        >
         <el-button
           type="primary"
           icon="el-icon-circle-plus-outline"
           size="small"
           @click="handleAdd"
-        >新增</el-button>
-        <el-input v-model="query.title" placeholder="博客名称" class="handle-input mr10" size="small"></el-input>
-        <el-button type="primary" icon="el-icon-search" size="small" @click="handleSearch()">搜索</el-button>
+          >新增</el-button
+        >
+        <el-input
+          v-model="query.title"
+          placeholder="博客名称"
+          class="handle-input mr10"
+          size="small"
+        ></el-input>
+        <el-select v-model="query.tag" placeholder="请选择">
+          <el-option
+            v-for="item in tagList"
+            :key="item.id"
+            :label="item.t_name"
+            :value="item.t_name"
+          >
+          </el-option>
+        </el-select>
+        <el-button
+          type="primary"
+          icon="el-icon-search"
+          size="small"
+          @click="handleSearch()"
+          >搜索</el-button
+        >
       </div>
 
       <!-- 列表页面 -->
@@ -30,24 +57,41 @@
         ref="multipleTable"
         header-cell-class-name="table-header"
       >
-        <el-table-column type="selection" width="55" align="center"></el-table-column>
+        <el-table-column
+          type="selection"
+          width="55"
+          align="center"
+        ></el-table-column>
         <el-table-column prop="title" label="标题"></el-table-column>
         <el-table-column prop="tag" label="标签"></el-table-column>
-        <el-table-column sortable prop="ctime" label="创建日期"></el-table-column>
+        <el-table-column
+          sortable
+          prop="ctime"
+          label="创建日期"
+        ></el-table-column>
 
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
             <el-button
               type="text"
               icon="el-icon-edit"
-              @click="handleEdit(scope.$index,scope.row, scope.row.id, scope.row.ctime)"
-            >编辑</el-button>
+              @click="
+                handleEdit(
+                  scope.$index,
+                  scope.row,
+                  scope.row.id,
+                  scope.row.ctime
+                )
+              "
+              >编辑</el-button
+            >
             <el-button
               type="text"
               icon="el-icon-delete"
               class="red"
               @click="handleDelete(scope.row.id)"
-            >删除</el-button>
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -78,28 +122,38 @@ export default {
         pageNum: 1,
         // 实现搜索功能
         title: "",
+        tag: "",
         currentPage: 1,
         // 每页显示10条数据
         pageSize: 10,
-        pageTotal: 0
+        pageTotal: 0,
       },
       blogs: [],
-
+      // 标签选择
+      tagList: [],
       // 是否展示编辑弹出框
       userFormVisible: false,
       dialogTitle: "",
       rules: {
         name: [
           { required: true, message: "请输入姓名", trigger: "blur" },
-          { min: 2, max: 5, message: "长度在 2 到 5 个字符", trigger: "blur" }
-        ]
-      }
+          { min: 2, max: 5, message: "长度在 2 到 5 个字符", trigger: "blur" },
+        ],
+      },
     };
   },
   created() {
     this.getBlogs();
+    this.getTag();
   },
   methods: {
+    // 获取标签
+    getTag() {
+      this.$http.get("/api/tag").then((res) => {
+        // console.log(res.data.data.datas);
+        this.tagList = res.data.data.datas;
+      });
+    },
     // 每页限制条数改变时
     handleSizeChange(val) {
       //改变每页显示数量重新请求数据，重置当前页为第一页
@@ -120,10 +174,10 @@ export default {
         .get("/api/blog", {
           params: {
             page: this.query.currentPage,
-            limit: this.query.pageSize
-          }
+            limit: this.query.pageSize,
+          },
         })
-        .then(res => {
+        .then((res) => {
           // console.log(res.data.data.datas);
           this.blogs = res.data.data.datas;
           this.query.pageTotal = res.data.data.total;
@@ -135,10 +189,11 @@ export default {
       this.$http
         .get("/api/blog", {
           params: {
-            title: this.query.title
-          }
+            title: this.query.title,
+            tag: this.query.tag,
+          },
         })
-        .then(res => {
+        .then((res) => {
           this.blogs = res.data.data.datas;
           this.query.pageTotal = res.data.data.total;
         });
@@ -152,9 +207,9 @@ export default {
     handleEdit(index, row, id, ctime) {
       this.$router.push({
         path: "editBlog",
-        query: { id: id, newCtime: ctime, row: row }
+        query: { id: id, newCtime: ctime, row: row },
       });
-      console.log(row);
+      // console.log(row);
       // 数据回显
       this.blog = Object.assign({}, this.blog, row);
     },
@@ -164,21 +219,21 @@ export default {
       this.$confirm(`确定删除吗？`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
+        type: "warning",
       }).then(() => {
         // 用户列表里删除数据
-        this.$http.delete("/api/blog/" + id).then(res => {
+        this.$http.delete("/api/blog/" + id).then((res) => {
           // console.log(res);
           // 重新获取数据
           this.getBlogs();
         });
         this.$message({
           type: "success",
-          message: "删除成功"
+          message: "删除成功",
         });
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

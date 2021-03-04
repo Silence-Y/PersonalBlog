@@ -10,7 +10,7 @@ const {
 
 // 新增
 exports.addBlog = async function (blogObj) {
-  blogObj = pick(blogObj, "title", "md_content", "html_content", "views", "ctime")
+  blogObj = pick(blogObj, "title", "md_content", "html_content", "views", "ctime","tag")
   const ins = await Blog.create(blogObj);
   return ins.toJSON();
 };
@@ -53,12 +53,17 @@ exports.getBlogById = async function (id) {
 
 
 // 分页查询
-exports.getBlogs = async function (page = 1, limit = 10, title = "") {
+exports.getBlogs = async function (page = 1, limit = 10, title = "",tag="") {
   const where = {};
   // 标题模糊查询
   if (title) {
     where.title = {
       [Op.like]: `%${title}%`
+    }
+  }
+  if(tag){
+    where.tag={
+      tag:tag
     }
   }
   const result = await Blog.findAndCountAll({
