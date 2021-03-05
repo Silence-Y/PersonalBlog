@@ -180,6 +180,7 @@ export default {
         .then((res) => {
           // console.log(res.data.data.datas);
           this.blogs = res.data.data.datas;
+          console.log(this.blogs);
           this.query.pageTotal = res.data.data.total;
         });
     },

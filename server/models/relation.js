@@ -6,5 +6,5 @@ const Tag = require("./Tag")
 Blog.hasMany(Comment)
 Comment.belongsTo(Blog)
 
-Tag.hasMany(Blog)
-Blog.belongsTo(Tag)
+// Tag.hasMany(Blog)
+// Blog.belongsTo(Tag)

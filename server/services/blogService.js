@@ -2,7 +2,7 @@ const Blog = require("../models/Blog")
 const {
   Op
 } = require("sequelize");
-const moment = require("moment");
+
 const {
   pick
 } = require("../util/propertyHelper");
@@ -54,22 +54,27 @@ exports.getBlogById = async function (id) {
 
 // 分页查询
 exports.getBlogs = async function (page = 1, limit = 10, title = "",tag="") {
-  const where = {};
-  // 标题模糊查询
-  if (title) {
-    where.title = {
-      [Op.like]: `%${title}%`
-    }
-  }
-  if(tag){
-    where.tag={
-      tag:tag
-    }
-  }
+
+ // 标题模糊查询
+ const criteria = {}
+ if (title) {
+  criteria['title'] = {[Op.like]: `%${title}%`};
+  // criteria['title'] =  {[Op.like]: `%${title}%`};
+  if (tag) {
+    // 这里用的就是纯粹的=符号，代表精确查找，下面例举了like符号，更多符号自己探索
+    criteria['tag'] = tag;
+ }
+  // criteria['tag'] = tag; 
+} else if (tag) {
+    criteria['tag'] = tag;
+}
+
+
+
   const result = await Blog.findAndCountAll({
     // 只选取其中几个属性
     // attributes: ["id", "title", "content"],
-    where,
+    where:criteria,
     order: [
       ['id', 'DESC'] // 逆序
       // ['id'] 正序
@@ -84,3 +89,34 @@ exports.getBlogs = async function (page = 1, limit = 10, title = "",tag="") {
     datas: JSON.parse(JSON.stringify(result.rows)),
   }
 }
+// exports.getBlogs = async function (page = 1, limit = 10, title = "",tag="") {
+//   const where = {};
+//   // 标题模糊查询
+//   if (title) {
+//     where.title = {
+//       [Op.like]: `%${title}%`
+//     }
+//   }
+//   if(tag){
+//     where.tag={
+//       tag:tag
+//     }
+//   }
+//   const result = await Blog.findAndCountAll({
+//     // 只选取其中几个属性
+//     // attributes: ["id", "title", "content"],
+//     where,
+//     order: [
+//       ['id', 'DESC'] // 逆序
+//       // ['id'] 正序
+//     ],
+//     // 跳过的页数
+//     offset: (page - 1) * limit,
+//     // 限制每页显示的数量
+//     limit: +limit
+//   });
+//   return {
+//     total: result.count,
+//     datas: JSON.parse(JSON.stringify(result.rows)),
+//   }
+// }
