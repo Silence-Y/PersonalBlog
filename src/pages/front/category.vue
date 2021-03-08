@@ -1,13 +1,13 @@
 <template>
-  <!-- 博客 -->
   <div id="blogList">
+    <div class="tag">分类：{{ tag }}</div>
     <ul>
-      <li v-for="(item, index) of blogs" :key="index">
+      <li v-for="(item, index) of blogsByTag" :key="index">
         <!-- 标题 -->
         <router-link
           :to="{
             name: 'blogDetail',
-            params: { id: item.id, views: item.views, index: index }
+            params: { id: item.id, views: item.views }
           }"
           tag="h2"
           >{{ item.title }}</router-link
@@ -34,8 +34,8 @@
           <!-- 显示更多 -->
           <router-link
             :to="{
-              name: 'blogDetail',
-              params: { id: item.id, views: item.views }
+              path: 'blogDetail',
+              query: { id: item.id, views: item.views, index: index }
             }"
             tag="p"
             class="read-more"
@@ -51,11 +51,20 @@
 export default {
   data() {
     return {
-      blogs: []
+      tag: this.$store.state.activeTag,
+      blogsByTag: []
     };
   },
   created() {
-    this.getBlogs();
+    this.getTagList();
+  },
+  // 监听路由,解决进入同一页面不刷新问题
+  watch: {
+    $route() {
+      // console.log("路由发生了变化");
+      this.tag = this.$store.state.activeTag;
+      this.getTagList();
+    }
   },
   methods: {
     // 将html格式转为纯文本
@@ -67,14 +76,19 @@ export default {
         .replace(/\s+/g, " ")
         .replace(/ /g, " ")
         .replace(/>/g, " ")
-        .slice(0, 100); //截取120字符
+        .slice(0, 100); //截取100字符
     },
-    // 获取博客
-    getBlogs() {
-      this.loading = true;
-      this.$http("/api/blog").then(res => {
-        this.blogs = res.data.data.datas;
-      });
+    getTagList() {
+      this.$http
+        .get("/api/blog", {
+          params: {
+            tag: this.tag
+          }
+        })
+        .then(res => {
+          console.log(res.data.data.datas);
+          this.blogsByTag = res.data.data.datas;
+        });
     }
   }
 };
@@ -82,4 +96,14 @@ export default {
 
 <style scoped>
 @import "../../assets/css/front/home.css";
+.tag {
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  color: #009688;
+}
 </style>

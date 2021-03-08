@@ -7,6 +7,7 @@ const about = resolve => require(['@/pages/front/about'], resolve)
 const map = resolve => require(['@/pages/front/map'], resolve)
 const blogDetail = resolve => require(['@/pages/front/blogDetail'], resolve)
 const message = resolve => require(['@/pages/front/message'], resolve)
+const category = resolve => require(['@/pages/front/category'], resolve)
 
 const login = resolve => require(['@/pages/back/login'], resolve)
 const admin = resolve => require(['@/pages/back/admin'], resolve)
@@ -14,12 +15,10 @@ const posts = resolve => require(['@/pages/back/posts'], resolve)
 const editBlog = resolve => require(['@/pages/back/editBlog'], resolve)
 const everyDay = resolve => require(['@/pages/back/everyDay'], resolve)
 
-
-
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     // 前台页面
     {
@@ -62,6 +61,14 @@ export default new Router({
           component: blogDetail,
           meta: {
             title: '博客详情页'
+          }
+        },
+        {
+          path: '/category/:id',
+          name: 'category',
+          component: category,
+          meta: {
+            title: '分类'
           }
         }
       ]
@@ -118,8 +125,11 @@ export default new Router({
       ]
     }
   ],
-  
-  scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
+
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
   }
 })

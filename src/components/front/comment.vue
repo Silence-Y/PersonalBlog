@@ -76,6 +76,9 @@ export default {
         alert("提交成功");
         // console.log(res);
         this.getComments();
+        this.comments.user_name = "";
+        this.comments.email = "";
+        this.comments.content = "";
       });
     }
   }

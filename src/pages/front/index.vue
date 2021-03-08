@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Header></Header>
+    <Header :data="tagList"></Header>
 
     <div class="content">
       <el-row :gutter="30" class="el-row">
@@ -24,11 +24,24 @@ import Header from "../../components/front/header";
 import Right from "../../components/front/right";
 export default {
   data() {
-    return {};
+    return {
+      tagList: []
+    };
   },
   components: {
     Header,
     Right
+  },
+  created() {
+    this.getTag();
+  },
+  methods: {
+    getTag() {
+      this.$http.get("/api/tag").then(res => {
+        // console.log(res.data.data.datas);
+        this.tagList = res.data.data.datas;
+      });
+    }
   }
 };
 </script>

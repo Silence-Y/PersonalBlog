@@ -31,7 +31,8 @@
           class="handle-input mr10"
           size="small"
         ></el-input>
-        <el-select v-model="query.tag" placeholder="请选择">
+
+        <el-select v-model="query.tag" placeholder="请选择" clearable>
           <el-option
             v-for="item in tagList"
             :key="item.id"
@@ -126,7 +127,7 @@ export default {
         currentPage: 1,
         // 每页显示10条数据
         pageSize: 10,
-        pageTotal: 0,
+        pageTotal: 0
       },
       blogs: [],
       // 标签选择
@@ -137,9 +138,9 @@ export default {
       rules: {
         name: [
           { required: true, message: "请输入姓名", trigger: "blur" },
-          { min: 2, max: 5, message: "长度在 2 到 5 个字符", trigger: "blur" },
-        ],
-      },
+          { min: 2, max: 5, message: "长度在 2 到 5 个字符", trigger: "blur" }
+        ]
+      }
     };
   },
   created() {
@@ -149,7 +150,7 @@ export default {
   methods: {
     // 获取标签
     getTag() {
-      this.$http.get("/api/tag").then((res) => {
+      this.$http.get("/api/tag").then(res => {
         // console.log(res.data.data.datas);
         this.tagList = res.data.data.datas;
       });
@@ -174,10 +175,10 @@ export default {
         .get("/api/blog", {
           params: {
             page: this.query.currentPage,
-            limit: this.query.pageSize,
-          },
+            limit: this.query.pageSize
+          }
         })
-        .then((res) => {
+        .then(res => {
           // console.log(res.data.data.datas);
           this.blogs = res.data.data.datas;
           console.log(this.blogs);
@@ -186,15 +187,16 @@ export default {
     },
     // 触发搜索按钮
     handleSearch() {
+      console.log(this.query.tag);
       this.loading = true;
       this.$http
         .get("/api/blog", {
           params: {
             title: this.query.title,
-            tag: this.query.tag,
-          },
+            tag: this.query.tag
+          }
         })
-        .then((res) => {
+        .then(res => {
           this.blogs = res.data.data.datas;
           this.query.pageTotal = res.data.data.total;
         });
@@ -208,7 +210,7 @@ export default {
     handleEdit(index, row, id, ctime) {
       this.$router.push({
         path: "editBlog",
-        query: { id: id, newCtime: ctime, row: row },
+        query: { id: id, newCtime: ctime, row: row }
       });
       // console.log(row);
       // 数据回显
@@ -220,21 +222,21 @@ export default {
       this.$confirm(`确定删除吗？`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning",
+        type: "warning"
       }).then(() => {
         // 用户列表里删除数据
-        this.$http.delete("/api/blog/" + id).then((res) => {
+        this.$http.delete("/api/blog/" + id).then(res => {
           // console.log(res);
           // 重新获取数据
           this.getBlogs();
         });
         this.$message({
           type: "success",
-          message: "删除成功",
+          message: "删除成功"
         });
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
