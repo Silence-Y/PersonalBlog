@@ -101,7 +101,7 @@ export default {
       dropDownShow: false, // 控制下拉菜单显示
       activeName: "", // 导航栏激活名称
       // tagList: []
-      tagId: ""
+      tagId: "",
     };
   },
   props: ["data"],
@@ -115,14 +115,14 @@ export default {
       this.$router.push({
         name: "category",
         params: {
-          id: val
-        }
+          id: val,
+        },
       });
       this.dropDownShow = false;
     },
     toActiveMenuItem() {
       this.dropDownShow = false;
-    }
+    },
 
     // 获取每日一句
     // getEveryDay() {
@@ -133,12 +133,209 @@ export default {
     //     // console.log(everyDay);
     //   });
     // }
-  }
+  },
 };
 </script>
 
-<style scoped>
-@import "../../assets/css/front/header.css";
+<style>
+#header {
+  position: relative;
+  width: 100%;
+}
+
+.header-content {
+  background: white;
+  /* 顶部导航固定 */
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  width: 100%;
+  height: 60px;
+}
+
+.header-content .nav-content {
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-content .nav-fold {
+  display: flex;
+  align-items: center;
+}
+
+.nav-content .nav-fold span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* 移动端导航 */
+#bars {
+  display: flex;
+  align-items: center;
+}
+
+#bars .icon-bar {
+  background-color: #333;
+  margin: 5px 0;
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+/* 下拉菜单 */
+
+.dropdown {
+  position: absolute;
+  /* top: 60px; */
+  width: 100%;
+  height: 240px;
+  background: #fff;
+  z-index: 999;
+  position: fixed;
+}
+
+/* .dropdown .dropdown-ul {
+  height: 100%;
+  padding: 20px 0;
+}
+
+.dropdown .dropdown-li {
+  width: 60%;
+  height: 18%;
+  margin-left: 50px;
+  font-size: 14px;
+} 
+.dropdown .dropdown-li:hover {
+  cursor: pointer;
+}*/
+
+.dropdown .el-menu-item {
+  width: 60%;
+  margin-left: 50px;
+}
+
+.el-menu-item.is-active {
+  color: #009688;
+}
+
+.dropdown-fade-show-enter-active {
+  animation: fadeShow 0.25s;
+}
+
+.dropdown-fade-show-leave-to {
+  animation: fadeShow 0.25s reverse;
+}
+
+@keyframes fadeShow {
+  0% {
+    transform-origin: 0 top;
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform-origin: 0 top;
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* 图片 */
+#banner {
+  text-align: center;
+  margin-bottom: 3em;
+  margin-top: 60px;
+}
+
+#banner a img {
+  width: 100%;
+}
+
+/* 调整头部信息 */
+@media screen and (min-width: 769px) {
+  #banner {
+    margin-bottom: 2em;
+  }
+
+  #bars {
+    display: none;
+  }
+
+  .dropdown {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-content .drawer {
+    display: block;
+  }
+
+  .nav-content .nav-fold span {
+    font-size: 16px;
+  }
+
+  .nav-content .menu-nav {
+    display: none;
+  }
+
+  .header-content ul {
+    width: 160px;
+  }
+
+  .header-content ul li {
+    width: 40px;
+  }
+
+  #banner {
+    margin-bottom: 1.5em;
+  }
+}
+
+/* #banner .site-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#banner h1 {
+  position: relative;
+  color: #fff;
+  font-size: 63px;
+  font-weight: 700;
+  text-shadow: rgba(255, 255, 255, 0.1) -1px -1px 1px,
+    rgba(0, 0, 0, 0.5) 1px 1px 1px;
+}
+
+#banner h1::after {
+  position: absolute;
+  width: 70px;
+  display: block;
+  height: 3px;
+  left: 50%;
+  margin-left: -30px;
+  bottom: -15px;
+  background-color: #fff;
+  content: "";
+}
+
+#banner h2 {
+  position: relative;
+  display: block;
+  color: #fff;
+  margin-top: 40px;
+  text-shadow: rgba(255, 255, 255, 0.1) -1px -1px 1px,
+    rgba(0, 0, 0, 0.5) 1px 1px 1px;
+} */
+
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;

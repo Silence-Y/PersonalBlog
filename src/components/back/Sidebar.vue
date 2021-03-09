@@ -18,15 +18,25 @@
               <span slot="title">{{ item.title }}</span>
             </template>
             <template v-for="subItem in item.subs">
-              <el-submenu v-if="subItem.subs" :index="subItem.index" :key="subItem.index">
+              <el-submenu
+                v-if="subItem.subs"
+                :index="subItem.index"
+                :key="subItem.index"
+              >
                 <template slot="title">{{ subItem.title }}</template>
                 <el-menu-item
-                  v-for="(threeItem,i) in subItem.subs"
+                  v-for="(threeItem, i) in subItem.subs"
                   :key="i"
                   :index="threeItem.index"
-                >{{ threeItem.title }}</el-menu-item>
+                  >{{ threeItem.title }}</el-menu-item
+                >
               </el-submenu>
-              <el-menu-item v-else :index="subItem.index" :key="subItem.index">{{ subItem.title }}</el-menu-item>
+              <el-menu-item
+                v-else
+                :index="subItem.index"
+                :key="subItem.index"
+                >{{ subItem.title }}</el-menu-item
+              >
             </template>
           </el-submenu>
         </template>
@@ -42,7 +52,6 @@
 </template>
 
 <script>
-import bus from "../../components/back/bus";
 export default {
   data() {
     return {
@@ -51,24 +60,29 @@ export default {
         {
           icon: "el-icon-lx-cascades",
           index: "posts",
-          title: "博客文章"
+          title: "博客文章",
         },
         {
           icon: "el-icon-lx-copy",
           index: "editBlog",
-          title: "编辑文章"
+          title: "编辑文章",
         },
         {
           icon: "el-icon-lx-copy",
           index: "everyDay",
-          title: "每日一句"
-        }
-      ]
+          title: "每日一句",
+        },
+        {
+          icon: "el-icon-lx-copy",
+          index: "tag",
+          title: "标签",
+        },
+      ],
     };
   },
   computed: {
-    onRoutes() {}
-  }
+    onRoutes() {},
+  },
 };
 </script>
 

@@ -14,6 +14,7 @@ const admin = resolve => require(['@/pages/back/admin'], resolve)
 const posts = resolve => require(['@/pages/back/posts'], resolve)
 const editBlog = resolve => require(['@/pages/back/editBlog'], resolve)
 const everyDay = resolve => require(['@/pages/back/everyDay'], resolve)
+const tag = resolve => require(['@/pages/back/tag'], resolve)
 
 Vue.use(Router)
 
@@ -120,6 +121,15 @@ export default new Router({
           meta: {
             requireAuth: true,
             title: '每日一句'
+          }
+        },
+        {
+          path: 'tag',
+          name: 'tag',
+          component: tag,
+          meta: {
+            requireAuth: true,
+            title: '标签'
           }
         },
       ]

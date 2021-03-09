@@ -12,21 +12,12 @@ body,
 
 .content {
   width: 60%;
-  height: 100%;
   margin: 0px auto 20px auto;
   /* 给gutter留padding */
   /* padding: 0 30px; */
 
 }
 
-.content .el-row {
-  height: 100%;
-
-}
-
-.content .el-row .el-col {
-  height: 100%;
-}
 
 @media (max-width: 1919px) and (min-width: 1600px) {
   .content {
