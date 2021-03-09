@@ -53,9 +53,9 @@ export default {
         user_name: "",
         content: "",
         email: "",
-        ctime: ""
+        ctime: "",
       },
-      commentsList: []
+      commentsList: [],
     };
   },
   created() {
@@ -64,7 +64,7 @@ export default {
   methods: {
     // 获取评论数据
     getComments() {
-      this.$http.get("/api/comment").then(res => {
+      this.$http.get("/api/comment").then((res) => {
         // console.log(res.data.data.datas);
         this.commentsList = res.data.data.datas;
       });
@@ -72,7 +72,7 @@ export default {
     sendComment() {
       // 获取时间;
       this.comments.ctime = moment().format("YYYY-MM-DD HH:mm:ss");
-      this.$http.post("/api/comment", this.comments).then(res => {
+      this.$http.post("/api/comment", this.comments).then((res) => {
         alert("提交成功");
         // console.log(res);
         this.getComments();
@@ -80,8 +80,8 @@ export default {
         this.comments.email = "";
         this.comments.content = "";
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

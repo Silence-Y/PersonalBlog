@@ -18,7 +18,7 @@ const everyDay = resolve => require(['@/pages/back/everyDay'], resolve)
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     // 前台页面
     {
