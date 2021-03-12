@@ -1,13 +1,13 @@
 <template>
   <div id="blogList">
-    <div class="tag">分类：{{ tag }}</div>
+    <div class="tag">分类：{{ tag }}({{ blogsByTag.length }})</div>
     <ul>
       <li v-for="(item, index) of blogsByTag" :key="index">
         <!-- 标题 -->
         <router-link
           :to="{
             name: 'blogDetail',
-            params: { id: item.id, views: item.views }
+            params: { id: item.id, views: item.views },
           }"
           tag="h2"
           >{{ item.title }}</router-link
@@ -35,7 +35,7 @@
           <router-link
             :to="{
               path: 'blogDetail',
-              query: { id: item.id, views: item.views, index: index }
+              query: { id: item.id, views: item.views, index: index },
             }"
             tag="p"
             class="read-more"
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       tag: this.$store.state.activeTag,
-      blogsByTag: []
+      blogsByTag: [],
     };
   },
   created() {
@@ -64,7 +64,7 @@ export default {
       // console.log("路由发生了变化");
       this.tag = this.$store.state.activeTag;
       this.getTagList();
-    }
+    },
   },
   methods: {
     // 将html格式转为纯文本
@@ -82,15 +82,15 @@ export default {
       this.$http
         .get("/api/blog", {
           params: {
-            tag: this.tag
-          }
+            tag: this.tag,
+          },
         })
-        .then(res => {
+        .then((res) => {
           console.log(res.data.data.datas);
           this.blogsByTag = res.data.data.datas;
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
