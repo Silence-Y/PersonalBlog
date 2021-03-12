@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
 
@@ -23,7 +23,6 @@ li {
 
 body {
   background-color: #eceff1;
-  /* overflow-y: scroll; */
 }
 
 h1,
