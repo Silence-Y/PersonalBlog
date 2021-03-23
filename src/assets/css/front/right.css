@@ -95,6 +95,10 @@
   margin-left: 5px;
 }
 
+#tags_cloud a:hover {
+  cursor: pointer;
+}
+
 /* 近期文章 */
 #recent_blog {
   position: relative;

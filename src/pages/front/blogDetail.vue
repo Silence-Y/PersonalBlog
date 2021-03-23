@@ -89,6 +89,7 @@ export default {
         // 如果当前页是1，则是数组的第0位
         // 只有索引值大于0，才有上一篇，索引值为0，就是最上一篇
         this.currentPageBlog = this.blogs[this.curIndex];
+        // console.log(this.currentPageBlog);
         this.prevPageBlog = this.blogs[this.curIndex - 1];
 
         // console.log(this.prevPageBlog);
@@ -144,13 +145,12 @@ export default {
       this.loading = true;
       // console.log(this.newId);
       // console.log(typeof Number(this.newViews));
-      // this.$http.get("/api/blog/`${this.newId}`").then(res => {
       this.$http.get("/api/blog/" + this.newId).then((res) => {
         // console.log(res.data.data);
         this.currentPageBlog = res.data.data;
         // 阅读量自增
         this.currentPageBlog.views = res.data.data.views + 1;
-        console.log(this.currentPageBlog.views);
+        // console.log(this.currentPageBlog.views);
         this.submit();
       });
     },

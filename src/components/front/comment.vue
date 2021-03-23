@@ -101,7 +101,7 @@ export default {
 
 .addComment p {
   padding: 20px 30px;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 600;
 }
 
@@ -125,13 +125,13 @@ export default {
 
 .addComment button {
   width: 100px;
-  font-size: 18px;
+  font-size: 16px;
   background-color: #455a64;
   color: #fff;
   border: none;
   border-radius: 5px;
-  margin: 10px 50px;
-  padding: 10px;
+  margin: 20px 50px;
+  padding: 8px 5px;
 }
 
 .addComment button:hover {

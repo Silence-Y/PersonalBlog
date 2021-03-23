@@ -88,6 +88,7 @@ export default {
         .then((res) => {
           // console.log(res.data.data.datas);
           this.blogsByTag = res.data.data.datas;
+          console.log(this.blogsByTag);
         });
     },
   },

@@ -13,24 +13,24 @@
     </div>
 
     <!-- 随机标签云 -->
-    <div id="tags_cloud">
+    <!-- <div id="tags_cloud">
       <h4>随机标签云</h4>
       <div>
         <a
-          v-for="(key, index) of tags"
+          v-for="(tag, index) of data"
           :key="index"
-          v-bind:href="key.url"
+          @click="handle(tag.t_name, tag.id)"
           :style="{ color: randColor(), fontSize: randSize() }"
-          >{{ key.tag }}</a
+          >{{ tag.t_name }}</a
         >
       </div>
-    </div>
+    </div> -->
 
     <!-- 近期文章 -->
     <div id="recent_blog">
       <h4>近期文章</h4>
       <ul>
-        <li v-for="(item, index) of blogList" :key="index">
+        <li v-for="(item, index) of currentBlog" :key="index">
           <router-link
             :to="{
               name: 'blogDetail',
@@ -49,21 +49,11 @@
 export default {
   data() {
     return {
-      tags: [
-        { tag: "JavaScript", url: "http://www.baidu.com" },
-        { tag: "HTML", url: "http://www.baidu.com" },
-        { tag: "CSS", url: "http://www.baidu.com" },
-        { tag: "ES6", url: "http://www.baidu.com" },
-        { tag: "Vue", url: "http://www.baidu.com" },
-        { tag: "React", url: "http://www.baidu.com" },
-        { tag: "Node.js", url: "http://www.baidu.com" },
-        { tag: "小程序", url: "http://www.baidu.com" },
-        { tag: "Webpack", url: "http://www.baidu.com" },
-        { tag: "git", url: "http://www.baidu.com" },
-      ],
       blogList: [],
+      currentBlog: [],
     };
   },
+  props: ["data"],
   computed: {
     randColor: function () {
       return function () {
@@ -83,12 +73,30 @@ export default {
     this.getHotBlog();
   },
   methods: {
+    // 获取文章
     getHotBlog() {
       this.$http.get("/api/blog").then((res) => {
         // const list = res.data.data.datas;
         this.blogList = res.data.data.datas;
-        console.log(this.blogList);
+        // this.recentBlog = this.blogList.splice(0, 5);
+        // console.log(this.recentBlog);
+        // console.log(this.blogList);
+        this.currentBlog = this.blogList.slice(0, 5);
+        console.log(this.currentBlog);
       });
+    },
+    handle(val, id) {
+      // this.activeTag = val;
+      // 修改标签的值。提交action
+      this.$store.dispatch("changeTag", val);
+      // console.log(this.$store.state.activeTag);
+      this.$router.push({
+        name: "category",
+        params: {
+          id: val,
+        },
+      });
+      // this.dropDownShow = false;
     },
   },
 };
