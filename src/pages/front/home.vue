@@ -7,7 +7,7 @@
         <router-link
           :to="{
             name: 'blogDetail',
-            params: { id: item.id, views: item.views, index: index }
+            params: { id: item.id, views: item.views, index: index },
           }"
           tag="h2"
           >{{ item.title }}</router-link
@@ -35,7 +35,7 @@
           <router-link
             :to="{
               name: 'blogDetail',
-              params: { id: item.id, views: item.views }
+              params: { id: item.id, views: item.views, index: index },
             }"
             tag="p"
             class="read-more"
@@ -51,7 +51,7 @@
 export default {
   data() {
     return {
-      blogs: []
+      blogs: [],
     };
   },
   created() {
@@ -72,11 +72,11 @@ export default {
     // 获取博客
     getBlogs() {
       this.loading = true;
-      this.$http("/api/blog").then(res => {
+      this.$http("/api/blog").then((res) => {
         this.blogs = res.data.data.datas;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

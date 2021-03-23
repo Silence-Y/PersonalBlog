@@ -66,22 +66,23 @@ export default {
       curIndex: Number(this.$route.params.index),
       pageSize: 1, // 每页显示数
       blogs: [],
-      index: ""
+      index: "",
     };
   },
   components: {
     Right,
     Comment,
-    mavonEditor
+    mavonEditor,
   },
   created() {
     this.getBlog();
     this.getViews();
+    // this.submit();
   },
   methods: {
     // 获取当前页
     getBlog() {
-      this.$http("/api/blog").then(res => {
+      this.$http("/api/blog").then((res) => {
         this.blogs = res.data.data.datas;
         // console.log(this.blogs);
         // console.log(this.len);
@@ -95,10 +96,10 @@ export default {
         this.nextPageBlog = this.blogs[this.curIndex + 1];
         // console.log(this.nextPageBlog);
 
-        console.log(this.prevPageBlog);
+        // console.log(this.prevPageBlog);
         // console.log(this.curIndex);
         this.nextPageBlog = this.blogs[this.curIndex + 1];
-        console.log(this.nextPageBlog);
+        // console.log(this.nextPageBlog);
       });
     },
     // 上一篇
@@ -110,11 +111,13 @@ export default {
         this.$router.push({
           name: "blogDetail",
           params: {
-            id: id
-          }
+            id: id,
+            index: this.curIndex,
+            views: this.prevPageBlog.views,
+          },
         });
         // console.log(this.curIndex);
-        this.getBlog();
+        // this.getBlog();
         // this.getViews();
       }
     },
@@ -125,17 +128,14 @@ export default {
         return;
       } else {
         this.curIndex++;
-        // console.log(this.curIndex);
         this.$router.push({
           name: "blogDetail",
           params: {
             id: id,
-            views: this.$route.params.views
-          }
-        }),
-          // console.log(this.curIndex);
-          this.getBlog();
-        // this.getViews();
+            index: this.curIndex,
+            views: this.nextPageBlog.views,
+          },
+        });
       }
     },
 
@@ -145,25 +145,26 @@ export default {
       // console.log(this.newId);
       // console.log(typeof Number(this.newViews));
       // this.$http.get("/api/blog/`${this.newId}`").then(res => {
-      this.$http.get("/api/blog/" + this.newId).then(res => {
+      this.$http.get("/api/blog/" + this.newId).then((res) => {
         // console.log(res.data.data);
         this.currentPageBlog = res.data.data;
         // 阅读量自增
         this.currentPageBlog.views = res.data.data.views + 1;
+        console.log(this.currentPageBlog.views);
         this.submit();
       });
     },
     // 增加阅读量
     submit() {
-      this.currentPageBlog.views = Number(this.newViews) + 1;
-      // console.log(this.blog.views);
+      // this.currentPageBlog.views = Number(this.newViews) + 1;
+      // console.log(this.currentPageBlog.views);
       this.$http
         .put("/api/blog/" + this.newId, this.currentPageBlog)
-        .then(res => {
+        .then((res) => {
           // console.log(res.data.data.views);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

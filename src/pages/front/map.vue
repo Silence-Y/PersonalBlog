@@ -14,7 +14,10 @@
       <ul id="blogs">
         <li v-for="(item, index) of blogList" :key="index">
           <router-link
-            :to="{ name: 'blogDetail', params: { id: item.id, index: index } }"
+            :to="{
+              name: 'blogDetail',
+              params: { id: item.id, views: item.views, index: index },
+            }"
             tag="a"
             >{{ item.title }}</router-link
           >

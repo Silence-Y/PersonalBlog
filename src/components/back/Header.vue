@@ -16,9 +16,15 @@
             <i class="el-icon-caret-bottom"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="profile" disabled>个人资料</el-dropdown-item>
-            <el-dropdown-item command="updatepwd" disabled>修改密码</el-dropdown-item>
-            <el-dropdown-item divided command="loginout">安全退出</el-dropdown-item>
+            <el-dropdown-item command="profile" disabled
+              >个人资料</el-dropdown-item
+            >
+            <el-dropdown-item command="updatepwd" disabled
+              >修改密码</el-dropdown-item
+            >
+            <el-dropdown-item divided command="loginout"
+              >安全退出</el-dropdown-item
+            >
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -27,7 +33,6 @@
 </template>
 
 <script>
-import bus from "../../components/back/bus";
 export default {
   data() {
     return {};
@@ -36,7 +41,7 @@ export default {
     username() {
       let username = localStorage.getItem("ms_username");
       return username ? username : this.name;
-    }
+    },
   },
   methods: {
     // 用户名下拉菜单选择事件
@@ -45,8 +50,8 @@ export default {
         localStorage.removeItem("ms_username");
         this.$router.push("/login");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

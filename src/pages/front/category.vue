@@ -7,7 +7,7 @@
         <router-link
           :to="{
             name: 'blogDetail',
-            params: { id: item.id, views: item.views },
+            params: { id: item.id, views: item.views, index: index },
           }"
           tag="h2"
           >{{ item.title }}</router-link
@@ -59,13 +59,13 @@ export default {
     this.getTagList();
   },
   // 监听路由,解决进入同一页面不刷新问题
-  watch: {
-    $route() {
-      // console.log("路由发生了变化");
-      this.tag = this.$store.state.activeTag;
-      this.getTagList();
-    },
-  },
+  // watch: {
+  //   $route() {
+  //     // console.log("路由发生了变化");
+  //     this.tag = this.$store.state.activeTag;
+  //     this.getTagList();
+  //   },
+  // },
   methods: {
     // 将html格式转为纯文本
     ToText(HTML) {
@@ -86,7 +86,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data.data.datas);
+          // console.log(res.data.data.datas);
           this.blogsByTag = res.data.data.datas;
         });
     },

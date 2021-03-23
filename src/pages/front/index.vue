@@ -5,7 +5,7 @@
     <div class="content">
       <el-row :gutter="30" class="el-row">
         <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
-          <router-view></router-view>
+          <router-view :key="$route.fullPath"></router-view>
         </el-col>
 
         <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
@@ -25,24 +25,24 @@ import Right from "../../components/front/right";
 export default {
   data() {
     return {
-      tagList: []
+      tagList: [],
     };
   },
   components: {
     Header,
-    Right
+    Right,
   },
   created() {
     this.getTag();
   },
   methods: {
     getTag() {
-      this.$http.get("/api/tag").then(res => {
+      this.$http.get("/api/tag").then((res) => {
         // console.log(res.data.data.datas);
         this.tagList = res.data.data.datas;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

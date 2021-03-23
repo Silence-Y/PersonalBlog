@@ -32,7 +32,10 @@
       <ul>
         <li v-for="(item, index) of blogList" :key="index">
           <router-link
-            :to="{ name: 'blogDetail', params: { id: item.id, index: index } }"
+            :to="{
+              name: 'blogDetail',
+              params: { id: item.id, views: item.views, index: index },
+            }"
             tag="a"
             >{{ item.title }}</router-link
           >
@@ -56,37 +59,38 @@ export default {
         { tag: "Node.js", url: "http://www.baidu.com" },
         { tag: "小程序", url: "http://www.baidu.com" },
         { tag: "Webpack", url: "http://www.baidu.com" },
-        { tag: "git", url: "http://www.baidu.com" }
+        { tag: "git", url: "http://www.baidu.com" },
       ],
-      blogList: []
+      blogList: [],
     };
   },
   computed: {
-    randColor: function() {
-      return function() {
+    randColor: function () {
+      return function () {
         var r = 50 + Math.floor(Math.random() * 200);
         var g = 50 + Math.floor(Math.random() * 200);
         var b = 50 + Math.floor(Math.random() * 200);
         return "rgb( " + r + ", " + g + ", " + b + ")";
       };
     },
-    randSize: function() {
-      return function() {
+    randSize: function () {
+      return function () {
         return 15 + Math.floor(Math.random() * 30) + "px";
       };
-    }
+    },
   },
   created() {
     this.getHotBlog();
   },
   methods: {
     getHotBlog() {
-      this.$http.get("/api/blog").then(res => {
+      this.$http.get("/api/blog").then((res) => {
         // const list = res.data.data.datas;
         this.blogList = res.data.data.datas;
+        console.log(this.blogList);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
